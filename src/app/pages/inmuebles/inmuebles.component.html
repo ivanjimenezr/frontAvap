@@ -1,0 +1,25 @@
+
+<div class="grid-content">
+    <div *ngFor="let piso of pisosList; let index = index" class="grid-card">
+        <h1>{{piso.direccion}}, {{piso.municipio}}</h1>
+        <!-- <div class="grid-foto">
+            <img src="{{piso.imagen}}" alt="">
+        </div> -->
+        <div class="grid-detalles">
+            <!-- <p><a href="pisos/detail/{{piso._id}}" title="{{piso.titular}}">{{piso.titular}}</a></p> -->
+            <!-- <a href="pisos/detail/{{piso._id}}">Detalles</a> -->
+            <p class="precio">
+                Precio: {{piso.precio}}<br>
+                Superficie: {{piso.superficie}}<br>
+                <!-- m<sup>2</sup> -->
+                id: {{piso.key}}
+            </p>
+            <!-- <p>{{piso.superficie}}m<sup>2</sup> id: {{piso.id}}</p> -->
+            <!-- <p><a href="pisos/detail/{{piso._id}}">+ info</a></p> -->
+        </div>
+        
+        
+    </div>
+
+</div>
+
