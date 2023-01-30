@@ -27,23 +27,41 @@ export class ServicesService {
 //     )
 //   }
   
-  public getInmueble( type: string ) {
-	
-		const url: string = this.endpoint + '/inmuebles/';
+  // Get Inmuebles
+  public getInmueble( type: string ) { 
+    const url: string = this.endpoint + '/inmuebles/';
+    return this.http.get( url );
+  }
 
-		return this.http.get( url );
+  // Get Inmueble by Id
+  public getInmueble( id : any ) { 
+    const url: string = this.endpoint + id;
+    return this.http.get( url );
+  }
+  
+//   getInmuebleId(idPiso:any): Observable<any> {
+//     let api = `${this.endpoint}/inmueble/${idPiso}`;
+//     return this.http.get(api, { headers: this.headers }).pipe(
+//       map((res: any) => {
+//         return res || {}
+//       }),
+//       catchError(this.handleError)
+//     )
+//   }
+  
+  
+  // Nuevo Inmueble
+  public newInmueble( jsonInmo ) {
+    const url: string = this.endpoint + '/inmueble/';
+    return this.http.post( url, jsonInmo );
+  }
+  
+  // Delete Inmueble
+  public deleteInmo( id: any ) {
+    const url: string = this.endpoint + '/inmueble/' + id;
+    return this.http.delete( url, { body: jsonFormat} );
 
 	}
-
-  getInmuebleId(idPiso:any): Observable<any> {
-    let api = `${this.endpoint}/inmueble/${idPiso}`;
-    return this.http.get(api, { headers: this.headers }).pipe(
-      map((res: any) => {
-        return res || {}
-      }),
-      catchError(this.handleError)
-    )
-  }
 
 
   // Error 
