@@ -17,15 +17,23 @@ export class ServicesService {
 
   constructor(private http: HttpClient, public router: Router) { }
 
-  getInmueble(): Observable<any> {
-    let api = `${this.endpoint}/inmuebles/`;
-    return this.http.get(api, { headers: this.headers }).pipe(
-      map((res: any) => {
-        return res || {}
-      }),
-      catchError(this.handleError)
-    )
-  }
+//   getInmueble(): Observable<any> {
+//     let api = `${this.endpoint}/inmuebles/`;
+//     return this.http.get(api, { headers: this.headers }).pipe(
+//       map((res: any) => {
+//         return res || {}
+//       }),
+//       catchError(this.handleError)
+//     )
+//   }
+  
+  public getInmueble( type: string ) {
+	
+		const url: string = this.endpoint + '/inmuebles/';
+
+		return this.http.get( url );
+
+	}
 
   getInmuebleId(idPiso:any): Observable<any> {
     let api = `${this.endpoint}/inmueble/${idPiso}`;
