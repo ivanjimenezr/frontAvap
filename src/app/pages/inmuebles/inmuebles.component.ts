@@ -3,7 +3,12 @@ import { Component, OnInit,OnDestroy  } from '@angular/core';
 import { ServicesService } from '../services.service';
 import { Subject, takeUntil } from 'rxjs';
 
-import { DialogService } from 'primeng/dynamicdialog';
+import {CardModule} from 'primeng/card';
+// import { PrimeNGConfig } from 'primeng/api';
+
+
+
+// import { DialogSe } from 'primeng/dynamicdialog';
 import { FormNewComponent } from './form-new/form-new.component';
 
 
@@ -12,7 +17,7 @@ import { FormNewComponent } from './form-new/form-new.component';
   selector: 'app-inmuebles',
   templateUrl: './inmuebles.component.html',
   styleUrls: ['./inmuebles.component.scss'],
-  providers: [DialogService]
+  // provi: [DialogService]
 })
 export class InmueblesComponent implements OnInit {
 
@@ -25,29 +30,16 @@ export class InmueblesComponent implements OnInit {
   protected readonly clearSubscriptions$ = new Subject();
 
 
-  constructor(public servicesService:ServicesService, public dialogService:DialogService, ) { }
+  constructor(public servicesService:ServicesService) { }
 
   ngOnInit(): void {
     this.recoverPisos(); 
+    
 
 		//La función de recuperar los pisos se ejecutará una vez se inicie el componente.
   }
   
-  public ngOnDestroy() {
-    this.clearSubscriptions$.complete();
-  }
-
-  newInmo(){
-      const ref = this.dialogService.open(FormNewComponent,
-        {
-          header: 'Nuevo inmueble',
-          width: '40%',
-          data:{
-            hola:'hola'
-          }
   
-        })
-    } 
   
   
   recoverPisos() {
@@ -57,8 +49,7 @@ export class InmueblesComponent implements OnInit {
       console.log(this.pisosList)
     })
   }
-  openPiso(index: number) {
-    this.indexPiso !== null ? this.indexPiso =  null : this.indexPiso = index;  
-  }
+  
+  
 
 }

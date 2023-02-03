@@ -1,1 +1,24 @@
 <p>form-new works!</p>
+<p-card>
+    <h3>Añadir inmueble</h3>
+    <div>
+        <form [formGroup]="formNewInmueble" (submit)="submit()">
+            
+            <div> tipologia: <input type="text" formControlName="tipologia" pInputText placeholder="Tipología"></div>
+            <div>provincia: <input type="text" formControlName="provincia" pInputText placeholder="Provincia"></div>
+            <div>municipio: <input type="text" formControlName="municipio" pInputText placeholder="municipio"></div>
+            <div>direccion: <input type="text" formControlName="direccion" pInputText placeholder="Dirección"></div>
+            <div>refCatastral: <input type="text" formControlName="refCatastral" pInputText placeholder="Referencia catastral"></div>
+            <div>superficie: <input type="text" formControlName="superficie" pInputText placeholder="Superficie"></div>
+            <div>descripcionNotaSimple: <input type="text" formControlName="descripNotaSimple" pInputText placeholder="Descripción nota simple"></div>
+            <div>inscripcionRegistro: <input type="text" formControlName="inscripcionRegistro" pInputText placeholder="Inscripción Registro"></div>
+            <div>cru: <input type="text" formControlName="cru" pInputText placeholder="CRU"></div>
+            <div>precio: <input type="text" formControlName="precio" pInputText placeholder="Precio"></div>
+            <div>finalizado: <input type="text" formControlName="finalizado" pInputText placeholder="Finalizado"></div>
+            <div>llaves: <input type="text" formControlName="llaves" pInputText placeholder="Llaves"></div>
+            <div>fechaAlta: <input type="text" formControlName="fechaAlta" pInputText placeholder="Fecha Alta"></div>
+        </form>
+        <button (click)="submit()" pButton type="button" label="Guardar"></button>
+    </div>
+    <button label="Cancelar" (click)="cancelBoton()" class="p-element p-ripple p-button-danger p-button p-component">Cancelar</button>
+</p-card>

@@ -1,26 +1,49 @@
-<button class="btn btn-primary" (click)="newInmo()">Nuevo inmueble</button>
+<!-- <p-toast></p-toast> -->
 
-<div class="grid-content">
-    <div *ngFor="let piso of pisosList; let index = index" class="grid-card">
-        <h1>{{piso.direccion}}, {{piso.municipio}}</h1>
-        <!-- <div class="grid-foto">
-            <img src="{{piso.imagen}}" alt="">
-        </div> -->
-        <div class="grid-detalles">
-            <!-- <p><a href="pisos/detail/{{piso._id}}" title="{{piso.titular}}">{{piso.titular}}</a></p> -->
-            <!-- <a href="pisos/detail/{{piso._id}}">Detalles</a> -->
-            <p class="precio">
-                Precio: {{piso.precio}}<br>
-                Superficie: {{piso.superficie}}<br>
-                <!-- m<sup>2</sup> -->
-                id: {{piso.key}}
-            </p>
-            <!-- <p>{{piso.superficie}}m<sup>2</sup> id: {{piso.id}}</p> -->
-            <!-- <p><a href="pisos/detail/{{piso._id}}">+ info</a></p> -->
-        </div>
-        
-        
-    </div>
+<!-- <button class="btn btn-primary" (click)="newInmu()">Nuevo inmueble</button> -->
 
-</div>
+<a href="newInmu/">Nuevo inmueble</a>
+<p-table [value]="pisosList" [tableStyle]="{'min-width': '50rem'}">
+<!-- <p-table
+[value]="pisosList"
+[resizableColumns]="true"
+styleClass="p-datatable-gridlines"
+[paginator]="true"
+[rows]="10"
+[showCurrentPageReport]="true"
+[rowsPerPageOptions]="[10, 25, 50]"
+[loading]="true"
+> -->
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Dirección</th>
+            <th>Provincia
+                <p-columnFilter type="text" field="provincia" display="menu"></p-columnFilter>
+            </th>
+            
+            <th>Precio</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-pisosList>
+        <tr>
+            <td>
+                {{pisosList.direccion}}
+            </td>
+            <td>
+                {{pisosList.provincia}}
+                
+            </td>
+            <td>
+                {{pisosList.precio}}
+            </td>
+            <td>
+                <a href="details/{{pisosList.key}}">+ info</a>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+
+
+
 

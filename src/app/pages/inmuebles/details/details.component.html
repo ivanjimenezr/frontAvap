@@ -1,0 +1,22 @@
+
+
+
+
+
+        
+            <p>Id: {{pisosId.key}}</p>
+            <p>Cru: {{pisosId.cru}}</p>
+            <p>descripNotaSimple: {{pisosId.descripNotaSimple}}</p>
+            <p>direccion: {{pisosId.direccion}}</p>
+            <p>fechaAlta: {{pisosId.fechaAlta}}</p>
+            <p>inscripcionRegistro: {{pisosId.inscripcionRegistro}}</p>
+            <p>municipio: {{pisosId.municipio}}</p>
+            <p>precio: {{pisosId.precio}}</p>
+            <p>provincia: {{pisosId.provincia}}</p>
+            <p>refCatastral: {{pisosId.refCatastral}}</p>
+            <p>superficie: {{pisosId.superficie}}</p>
+            <p>tipologia: {{pisosId.tipologia}}</p>
+            
+            <button (click)="onEditar(pisosId)">Editar</button>
+            <app-form-up [piso]="pisoEditar" (cerrar)="cerrarEdicion()">Editar</app-form-up>
+   

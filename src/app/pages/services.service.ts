@@ -28,15 +28,22 @@ export class ServicesService {
 //   }
   
   // Get Inmuebles
-  public getInmueble( type: string ) { 
+  public getInmueble() { 
     const url: string = this.endpoint + '/inmuebles/';
     return this.http.get( url );
   }
 
   // Get Inmueble by Id
-  public getInmueble( id : any ) { 
-    const url: string = this.endpoint + id;
+  public getInmuebleId( id : any ) { 
+    const url: string = this.endpoint + '/inmuebles/' + id;
     return this.http.get( url );
+  }
+
+  enviaNewInmu(jsonNewInmu:any){
+    let serializedForm = JSON.stringify(jsonNewInmu);
+    console.log('se envia jsonNewInmu al back',serializedForm)
+
+    return this.http.post(this.endpoint + '/inmuebles/',jsonNewInmu)
   }
   
 //   getInmuebleId(idPiso:any): Observable<any> {
@@ -51,17 +58,17 @@ export class ServicesService {
   
   
   // Nuevo Inmueble
-  public newInmueble( jsonInmo ) {
-    const url: string = this.endpoint + '/inmueble/';
-    return this.http.post( url, jsonInmo );
-  }
+  // public newInmueble( jsonInmo:any ) {
+  //   const url: string = this.endpoint + '/inmueble/';
+  //   return this.http.post( url, jsonInmo );
+  // }
   
   // Delete Inmueble
-  public deleteInmo( id: any ) {
-    const url: string = this.endpoint + '/inmueble/' + id;
-    return this.http.delete( url, { body: jsonFormat} );
+  // public deleteInmo( id: any ) {
+  //   const url: string = this.endpoint + '/inmueble/' + id;
+  //   return this.http.delete( url, { body: jsonFormat} );
 
-	}
+	// }
 
 
   // Error 
