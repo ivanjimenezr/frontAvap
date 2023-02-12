@@ -1,6 +1,14 @@
 
 <h2>Lista de inmuebles</h2>
-<button (click)="nuevoInmu()" type="button" class="btn btn-success">Nuevo inmueble</button>
+<div class="subMenuInmuebles">
+    <div><button (click)="nuevoInmu()" type="button" class="btn btn-success">Nuevo inmueble</button></div>
+    <div><p-inputSwitch (onChange)="handleChange($event)"></p-inputSwitch> Mostrar finalizados</div>
+    
+    
+</div>
+
+
+
 <table class="table table-striped">
     <thead class="table-dark">
         <tr>
@@ -29,7 +37,9 @@
             <th>
                 <button (click)="actualizarInmueble(inmueble.id)" class="btn btn-info">Editar</button>
                 <button (click)="detallesInmueble(inmueble.id)" class="btn btn-primary" style="margin-left: 10px;">Detalles</button>
-                <button (click)="eliminarInmueble(inmueble.id)" class="btn btn-danger" style="margin-left: 10px;">Eliminar</button>
+                <button (click)="eliminarInmueble(inmueble.id)" class="btn btn-danger" style="margin-left: 10px;">Finalizar</button>
+                
+                
             </th>
             </tr>
     </tbody>

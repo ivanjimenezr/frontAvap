@@ -11,6 +11,8 @@ import { FormNewComponent } from './pages/inmuebles/form-new/form-new.component'
 import { DetailsComponent } from './pages/inmuebles/details/details.component';
 import { FormUpComponent } from './pages/inmuebles/form-up/form-up.component';
 
+import {InputSwitchModule} from 'primeng/inputswitch';
+
 // import {TableModule} from 'primeng/table';
 // import {ToastModule} from 'primeng/toast';
 // import {CalendarModule} from 'primeng/calendar';
@@ -50,6 +52,7 @@ import { CompradoresComponent } from './pages/compradores/compradores.component'
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    InputSwitchModule,
     // TableModule,
     // ToastModule,
     // CalendarModule,

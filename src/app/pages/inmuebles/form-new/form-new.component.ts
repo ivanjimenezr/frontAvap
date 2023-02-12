@@ -43,10 +43,15 @@ export class FormNewComponent implements OnInit {
       "Trastero"
     ]
 
-    siNo:any = [
-      "Si",
-      "No"
-    ]
+    siNo:any = [{
+      "key":"Si",
+      "value":1
+    },
+    {
+      "key":"No",
+      "value":0
+    }
+  ]
   
     
 

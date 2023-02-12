@@ -15,13 +15,16 @@ import { Router } from '@angular/router';
 export class InmueblesComponent implements OnInit {
 
   public inmuebles:any;
+  public checked: boolean;
+  public funcion:any = this.recoverPisosAct()
   
   constructor(public servicesService:ServicesService,public router: Router) { }
 
   ngOnInit(): void {
 
    //La función de recuperar los inmuebles se ejecutará una vez se inicie el componente.
-    this.recoverPisos(); 
+    // this.recoverPisosAct(); 
+    this.funcion
     
 
   }
@@ -31,7 +34,7 @@ export class InmueblesComponent implements OnInit {
     this.servicesService.eliminarInmueble(id).subscribe(dato=>{
       console.log(dato)
     })
-    this.recoverPisos(); 
+    this.recoverPisosAct(); 
   }
 
   public actualizarInmueble(id:string){
@@ -43,17 +46,38 @@ export class InmueblesComponent implements OnInit {
     this.router.navigate(['api/details',id]);
   }
 
-  private recoverPisos() {
+  private recoverPisosAct() {
     return this.servicesService.getInmueble().subscribe((data)=> {
-      this.inmuebles = data;
+      this.inmuebles = data.filter((item) => {
+        return item.finalizado === 0;
+      });
+      // this.inmuebles = data;
       console.log(this.inmuebles)
+      this.funcion = this.inmuebles
     })
+
   }
+  public recoverPisosFin() {
+    return this.servicesService.getInmueble().subscribe((data)=> {
+      this.inmuebles = data.filter((item) => {
+        return item.finalizado === 1;
+      });
+      // this.inmuebles = data;
+      console.log(this.inmuebles)
+      this.funcion = this.inmuebles
+    })}
 
   nuevoInmu(){
     this.router.navigate(['api/newInmu'])
   }
-  
+  handleChange(e:any) {
+    let isChecked = e.checked;
+    if (isChecked){
+      this.recoverPisosFin()
+    } else {
+      this.recoverPisosAct()
+    }
+}
   
 
 }

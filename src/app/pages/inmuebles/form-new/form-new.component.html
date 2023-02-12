@@ -31,7 +31,7 @@
                 <div class="form-outline">
                   <!-- <input type="text" id="form9Example1" class="form-control input-custom" /> -->
                   <select id='tipologia' name='tipologia' formControlName="tipologia" class="custom-select mr-sm-2">
-                    <option *ngFor="let item of tipologias" [value]="item">
+                    <option *ngFor="let item of tipologias" [value]="item"  >
                       {{item}}
                     </option>    
                 </select>
@@ -105,8 +105,8 @@
                 <div class="col">
                   <div class="form-outline">
                     <select id='finalizado' name='finalizado' formControlName="finalizado" class="custom-select mr-sm-2">
-                        <option *ngFor="let item of siNo" [value]="item">
-                          {{item}}
+                        <option *ngFor="let item of siNo" [value]="item.value">
+                          {{item.key}}
                         </option>    
                     </select>
                     <label class="form-label" for="finalizado">Finalizado</label>
@@ -115,8 +115,8 @@
                 <div class="col">
                   <div class="form-outline">
                     <select id='llaves' name='llaves' formControlName="llaves" class="custom-select mr-sm-2">
-                        <option *ngFor="let item of siNo" [value]="item">
-                          {{item}}
+                        <option *ngFor="let item of siNo" [value]="item.value">
+                          {{item.key}}
                         </option>    
                     </select>
                     <label class="form-label" for="llaves">Llaves</label>
@@ -127,7 +127,7 @@
                 <div class="col">
                   <div class="form-outline">
                     <input type="date" class="form-control input-custom" id="fechaAlta" formControlName="fechaAlta" name="fechaAlta">
-                    <label class="form-label" for="fechaAlta">fechaAlta</label>
+                    <label class="form-label" for="fechaAlta">Fecha de alta</label>
                   </div>
                 </div>
                 <div class="col">
