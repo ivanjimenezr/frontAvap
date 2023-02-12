@@ -37,6 +37,16 @@ export class InmueblesComponent implements OnInit {
     this.recoverPisosAct(); 
   }
 
+  public finalizarInmueble(id:any){
+    let jsonFinalizadoinmueble : any = {"finalizado":1}
+    this.servicesService.updateInmueble(id,jsonFinalizadoinmueble).subscribe(dato=>{
+      console.log('inmoToFinalizar',dato);
+      // this.router.navigate(['api/inmuebles'])
+    },error => console.log(error)
+    )
+    this.recoverPisosAct(); 
+  }
+
   public actualizarInmueble(id:string){
     console.log('id: ',id)
     this.router.navigate(['api/update',id]);
@@ -70,6 +80,8 @@ export class InmueblesComponent implements OnInit {
   nuevoInmu(){
     this.router.navigate(['api/newInmu'])
   }
+  
+  // Funcion para mostrar archivados o activos
   handleChange(e:any) {
     let isChecked = e.checked;
     if (isChecked){

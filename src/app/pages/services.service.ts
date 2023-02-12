@@ -45,7 +45,8 @@ export class ServicesService {
 return this.http.post(this.endpoint + '/inmuebles/',inmueble)
   }
 
-  updateInmueble(id:string,inmueble:Inmuebles): Observable <Object>{
+  updateInmueble(id:string,inmueble:any): Observable <Object>{
+    console.log('type: ', typeof(inmueble))
     return this.http.put(this.endpoint + '/inmuebles/'+id,inmueble)
       }
 
