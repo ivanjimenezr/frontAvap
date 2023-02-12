@@ -1,3 +1,4 @@
+import { Inmuebles } from './../../models/inmuebles';
 // import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -13,67 +14,151 @@ import { ServicesService } from '../../services.service';
   styleUrls: ['./form-up.component.scss']
 })
 export class FormUpComponent implements OnInit {
-  @Input() set piso (valor:any){
-    this.crearFormulario();
-    if (valor){
-      this.pisoOriginal = valor;
-      this.formActualizar.patchValue({
-        _id: valor.key,
-        titular: valor.titular,
-        precio:valor.precio,
-        tipo:valor.tipo,
-        direccion:valor.direccion,
-        superficie:valor.superficie,
-        imagen:valor.imagen
-
-      });
-    }
-  }
-
-  @Output() cerrar = new EventEmitter();
+  
   public formActualizar!: FormGroup;
   public pisoOriginal: any;
   public pisosId? : any 
-  // variable submitted a false
-	public submitted: boolean = false;
-  protected readonly clearSubscriptions$ = new Subject();
-  constructor(private formBuilder: FormBuilder, private serviceService:ServicesService, private activatedRoute: ActivatedRoute, private router:Router) { }
+  public datosUpdate? :any
 
-  ngOnInit(): void {
+  // crearFormulario(){
+  //   this.formActualizar = this.formBuilder.group({
+  //     titular:['', [Validators.required]],
+  //     precio:['', [Validators.required]],
+  //     tipo:['', [Validators.required]],
+  //     direccion:['', [Validators.required]],
+  //     superficie:['', [Validators.required]],
+  //     imagen:['', [Validators.required]],
 
-    this.crearFormulario();
-    this.activatedRoute.paramMap.subscribe(params => {
-      this.pisosId = params.get('id')
-      // console.log(this.pisosId)
-    })
-    this.recoverPisos(this.pisosId)
-  }
+  //   })
+  // }
 
-  recoverPisos(idPiso: any) {
-    return this.serviceService.getInmuebleId(idPiso).pipe(takeUntil(this.clearSubscriptions$),).subscribe((data)=> {
-      this.pisosId = data
-      console.log(this.pisosId)
-    })
-  }
 
-  crearFormulario(){
-    this.formActualizar = this.formBuilder.group({
-      titular:['', [Validators.required]],
-      precio:['', [Validators.required]],
-      tipo:['', [Validators.required]],
-      direccion:['', [Validators.required]],
-      superficie:['', [Validators.required]],
-      imagen:['', [Validators.required]],
+  formUpInmueble = this.formBuilder.group({
+    tipologia: ['', Validators.required],
+    provincia: ['', Validators.required],
+    municipio: ['', Validators.required],
+    direccion: ['', Validators.required],
+    refCatastral: ['', Validators.required],
+    superficie: ['', Validators.required],
+    descripNotaSimple: ['', Validators.required],
+    inscripcionRegistro: ['', Validators.required],
+    cru: ['', Validators.required],
+    precio: ['', Validators.required],
+    finalizado: ['', Validators.required],
+    llaves: ['', Validators.required],
+    fechaAlta: ['', Validators.required],
+  })
 
-    })
-  }
+// public inmueble:Inmuebles = new Inmuebles ;
+
+  tipologias:any = [
+    "Ático",
+    "Chalé pareado",
+    "Chalé independiente",
+    "Chalé adosado",
+    "Finca",
+    "Garaje",
+    "Piso",
+    "Trastero"
+  ]
+
+  siNo:any = [
+    "Si",
+    "No"
+  ]
 
   
 
-  onCancelar(){
-    this.pisoOriginal = null;
-    this.cerrar.emit();
-  }
+constructor(private servicesService:ServicesService,public formBuilder:FormBuilder,public router: Router, private activatedRoute: ActivatedRoute) { }
 
+ngOnInit(): void {
+
+  this.pisosId = this.activatedRoute.snapshot.paramMap.get('id');
+  console.log('idInmueble', this.pisosId)
+
+  this.servicesService.getInmuebleId(this.pisosId).subscribe(data =>{
+    this.datosUpdate = data
+    console.log('datosUpdate',this.datosUpdate)
+    this.formUpInmueble.patchValue({
+      'tipologia': this.datosUpdate.tipologia,
+      'provincia': this.datosUpdate.provincia,
+      'municipio': this.datosUpdate.municipio,
+      'direccion': this.datosUpdate.direccion,
+      'refCatastral': this.datosUpdate.refCatastral,
+      'superficie': this.datosUpdate.superficie,
+      'descripNotaSimple': this.datosUpdate.descripNotaSimple,
+      'inscripcionRegistro': this.datosUpdate.inscripcionRegistro,
+      'cru': this.datosUpdate.cru,
+      'precio': this.datosUpdate.precio,
+      'finalizado': this.datosUpdate.finalizado,
+      'llaves': this.datosUpdate.llaves,
+      'fechaAlta': this.datosUpdate.fechaAlta,
+    })
+  }) 
+
+
+  // this.crearFormulario();
+    
+  // this.activatedRoute.paramMap.subscribe(params => {
+  //     this.pisosId = params.get('id')
+  //     // console.log(this.pisosId)
+  //   })
+  //   this.recoverPisos(this.pisosId)
+  // }
+
+  // recoverPisos(idPiso: any) {
+  //   return this.servicesService.getInmuebleId(idPiso).subscribe((data)=> {
+  //     this.pisosId = data
+
+  //     console.log('kkkk',this.pisosId)
+  //   })
+  }
   
+  
+  public submit(){
+    console.log(this.formUpInmueble.value)
+    // console.log(this.formNewInmueble.value)
+    this.updateInmueble()
+  }
+  
+  public updateInmueble(){
+    let jsonFormUp : any = this.formUpInmueble.value
+    this.servicesService.updateInmueble(this.pisosId,jsonFormUp).subscribe(dato=>{
+      console.log('datoToUp',dato);
+      this.router.navigate(['api/inmuebles'])
+    },error => console.log(error)
+    )
+  }
+  public onCancelar(){
+    this.router.navigate(['api/inmuebles']);
+  }
 }
+
+
+
+
+
+
+// public submit(){
+  
+  
+  
+//   let jsonFormNew = this.formNewInmueble.value
+//   console.log('iiii', jsonFormNew)
+//   this.servicesService.enviaNewInmu(jsonFormNew).subscribe({
+//     next: (data)=>{
+//       console.log('Se ha enviado el inmueble nuevo: ', data)
+//       this.router.navigate(['inmuebles']);
+//     },
+//     error:(err)=>{
+//       console.log(err)
+//     }
+//   })
+// }
+
+// public cancelBoton(){
+//   this.formNewInmueble.reset();
+// }
+
+  
+// }

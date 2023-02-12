@@ -1,5 +1,5 @@
-export interface Models {
-    key: String
+export interface Inmuebles {
+    // key: String
     tipologia: String,
     provincia: String,
     municipio: String,

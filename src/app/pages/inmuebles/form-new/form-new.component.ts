@@ -1,7 +1,9 @@
+import { Inmuebles } from './../../models/inmuebles';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ServicesService } from '../../services.service';
 import { Router } from '@angular/router';
+
 
 
 
@@ -11,22 +13,42 @@ import { Router } from '@angular/router';
   styleUrls: ['./form-new.component.scss']
 })
 export class FormNewComponent implements OnInit {
-
+  
   formNewInmueble = this.formBuilder.group({
-    tipologia: ['', Validators.required],
-    provincia: ['', Validators.required],
-    municipio: ['', Validators.required],
-    direccion: ['', Validators.required],
-    refCatastral: ['', Validators.required],
-    superficie: ['', Validators.required],
-    descripNotaSimple: ['', Validators.required],
-    inscripcionRegistro: ['', Validators.required],
-    cru: ['', Validators.required],
-    precio: ['', Validators.required],
-    finalizado: ['', Validators.required],
-    llaves: ['', Validators.required],
-    fechaAlta: ['', Validators.required],
-  })
+      tipologia: ['', Validators.required],
+      provincia: ['', Validators.required],
+      municipio: ['', Validators.required],
+      direccion: ['', Validators.required],
+      refCatastral: ['', Validators.required],
+      superficie: ['', Validators.required],
+      descripNotaSimple: ['', Validators.required],
+      inscripcionRegistro: ['', Validators.required],
+      cru: ['', Validators.required],
+      precio: ['', Validators.required],
+      finalizado: ['', Validators.required],
+      llaves: ['', Validators.required],
+      fechaAlta: ['', Validators.required],
+    })
+
+  // public inmueble:Inmuebles = new Inmuebles ;
+
+    tipologias:any = [
+      "Ático",
+      "Chalé pareado",
+      "Chalé independiente",
+      "Chalé adosado",
+      "Finca",
+      "Garaje",
+      "Piso",
+      "Trastero"
+    ]
+
+    siNo:any = [
+      "Si",
+      "No"
+    ]
+  
+    
 
   constructor(private servicesService:ServicesService,public formBuilder:FormBuilder,public router: Router) { }
 
@@ -34,25 +56,49 @@ export class FormNewComponent implements OnInit {
   }
 
   public submit(){
-    
-    
-    
-    let jsonFormNew = this.formNewInmueble.value
-    console.log('iiii', jsonFormNew)
-    this.servicesService.enviaNewInmu(jsonFormNew).subscribe({
-      next: (data)=>{
-        console.log('Se ha enviado el inmueble nuevo: ', data)
-        this.router.navigate(['/']);
-      },
-      error:(err)=>{
-        console.log(err)
-      }
-    })
+    console.log(this.formNewInmueble.value)
+    // console.log(this.formNewInmueble.value)
+    this.guardarInmueble()
   }
 
-  public cancelBoton(){
-    this.formNewInmueble.reset();
+  public guardarInmueble(){
+    let jsonFormNew : any = this.formNewInmueble.value
+    this.servicesService.registrarInmueble(jsonFormNew).subscribe(dato=>{
+      console.log('dato',dato);
+      this.router.navigate(['inmuebles'])
+    },error => console.log(error)
+    )
   }
+
+  public onCancelar(){
+    this.router.navigate(['api/inmuebles']);
+  }
+
+  
+ 
+ 
+ 
+ 
+  // public submit(){
+    
+    
+    
+  //   let jsonFormNew = this.formNewInmueble.value
+  //   console.log('iiii', jsonFormNew)
+  //   this.servicesService.enviaNewInmu(jsonFormNew).subscribe({
+  //     next: (data)=>{
+  //       console.log('Se ha enviado el inmueble nuevo: ', data)
+  //       this.router.navigate(['inmuebles']);
+  //     },
+  //     error:(err)=>{
+  //       console.log(err)
+  //     }
+  //   })
+  // }
+
+  // public cancelBoton(){
+  //   this.formNewInmueble.reset();
+  // }
 
   
 

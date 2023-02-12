@@ -1,3 +1,4 @@
+import { Inmuebles } from './models/inmuebles';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
@@ -27,10 +28,9 @@ export class ServicesService {
 //     )
 //   }
   
-  // Get Inmuebles
-  public getInmueble() { 
-    const url: string = this.endpoint + '/inmuebles/';
-    return this.http.get( url );
+  // Este método nos trae todos Inmuebles
+  public getInmueble():Observable<Inmuebles[]>{ 
+    return this.http.get<Inmuebles[]>( `${this.endpoint}/inmuebles/` );
   }
 
   // Get Inmueble by Id
@@ -39,12 +39,27 @@ export class ServicesService {
     return this.http.get( url );
   }
 
-  enviaNewInmu(jsonNewInmu:any){
-    let serializedForm = JSON.stringify(jsonNewInmu);
-    console.log('se envia jsonNewInmu al back',serializedForm)
+  // Publicar un nuevo inmueble
 
-    return this.http.post(this.endpoint + '/inmuebles/',jsonNewInmu)
+  registrarInmueble(inmueble:Inmuebles): Observable <Object>{
+return this.http.post(this.endpoint + '/inmuebles/',inmueble)
   }
+
+  updateInmueble(id:string,inmueble:Inmuebles): Observable <Object>{
+    return this.http.put(this.endpoint + '/inmuebles/'+id,inmueble)
+      }
+
+  //Eliminar inmueble
+  eliminarInmueble(id:string){
+    return this.http.delete(this.endpoint + '/inmuebles/' + id)
+  }
+
+  // enviaNewInmu(jsonNewInmu:any){
+  //   let serializedForm = JSON.stringify(jsonNewInmu);
+  //   console.log('se envia jsonNewInmu al back',serializedForm)
+
+  //   return this.http.post(this.endpoint + '/inmuebles/',jsonNewInmu)
+  // }
   
 //   getInmuebleId(idPiso:any): Observable<any> {
 //     let api = `${this.endpoint}/inmueble/${idPiso}`;
@@ -70,7 +85,13 @@ export class ServicesService {
 
 	// }
 
-
+// piso piso-update
+updatePiso(piso: any, id:String){
+  return this.http.put(`${this.endpoint}/inmuebles/${id}`, piso)
+      .pipe(
+        catchError(this.handleError)
+      )
+}
   // Error 
   handleError(error: HttpErrorResponse) {
     let msg = '';

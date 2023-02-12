@@ -1,15 +1,8 @@
-import { Models } from './models';
+import { Inmuebles } from './../models/inmuebles';
 import { Component, OnInit,OnDestroy  } from '@angular/core';
 import { ServicesService } from '../services.service';
-import { Subject, takeUntil } from 'rxjs';
+import { Router } from '@angular/router';
 
-import {CardModule} from 'primeng/card';
-// import { PrimeNGConfig } from 'primeng/api';
-
-
-
-// import { DialogSe } from 'primeng/dynamicdialog';
-import { FormNewComponent } from './form-new/form-new.component';
 
 
 
@@ -21,33 +14,44 @@ import { FormNewComponent } from './form-new/form-new.component';
 })
 export class InmueblesComponent implements OnInit {
 
-  //Aquí almacenaremos nuestro listado de pisos una vez se complete la petición
-  // public pisosList : Models[] = []
-  public pisosList : any = []
-  public indexPiso: number | null = null;
-  public isOpen: boolean = false;
-
-  protected readonly clearSubscriptions$ = new Subject();
-
-
-  constructor(public servicesService:ServicesService) { }
+  public inmuebles:any;
+  
+  constructor(public servicesService:ServicesService,public router: Router) { }
 
   ngOnInit(): void {
+
+   //La función de recuperar los inmuebles se ejecutará una vez se inicie el componente.
     this.recoverPisos(); 
     
 
-		//La función de recuperar los pisos se ejecutará una vez se inicie el componente.
   }
-  
-  
-  
-  
-  recoverPisos() {
-    return this.servicesService.getInmueble().pipe(takeUntil(this.clearSubscriptions$),).subscribe((data)=> {
-      console.log(data)
-      this.pisosList = data
-      console.log(this.pisosList)
+
+  public eliminarInmueble(id:any){
+    console.log('id', id)
+    this.servicesService.eliminarInmueble(id).subscribe(dato=>{
+      console.log(dato)
     })
+    this.recoverPisos(); 
+  }
+
+  public actualizarInmueble(id:string){
+    console.log('id: ',id)
+    this.router.navigate(['api/update',id]);
+  }
+
+  public detallesInmueble(id:string){
+    this.router.navigate(['api/details',id]);
+  }
+
+  private recoverPisos() {
+    return this.servicesService.getInmueble().subscribe((data)=> {
+      this.inmuebles = data;
+      console.log(this.inmuebles)
+    })
+  }
+
+  nuevoInmu(){
+    this.router.navigate(['api/newInmu'])
   }
   
   

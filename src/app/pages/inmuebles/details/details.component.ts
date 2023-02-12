@@ -1,7 +1,7 @@
+import { Inmuebles } from './../../models/inmuebles';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { ServicesService } from '../../services.service';
-import { Subject, takeUntil } from 'rxjs';
+import { ActivatedRoute , Router} from '@angular/router';
 
 
 
@@ -12,36 +12,41 @@ import { Subject, takeUntil } from 'rxjs';
 })
 export class DetailsComponent implements OnInit {
 
-  public pisosId? : any 
-  public pisoEditar = null;
+  public id:any
+  public inmueble:any
 
-  protected readonly clearSubscriptions$ = new Subject();
 
-  constructor(private servicesService : ServicesService, private activatedRoute : ActivatedRoute) { }
+
+  constructor(private servicesService : ServicesService, private activatedRoute : ActivatedRoute, private router : Router) { }
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(params => {
-      this.pisosId = params.get('id')
-      console.log('fffff',this.pisosId)
+      this.id = params.get('id')
+      console.log('fffff',this.id)
+      this.servicesService.getInmuebleId(this.id).subscribe(dato =>{
+        this.inmueble = dato
+      })
     })
 
-    this.recoverPisos(this.pisosId)
-  }
-  public ngOnDestroy() {
-    this.clearSubscriptions$.complete();
-  }
-  recoverPisos(idPiso: any) {
-    return this.servicesService.getInmuebleId(idPiso).pipe(takeUntil(this.clearSubscriptions$),).subscribe((data)=> {
-      this.pisosId = data
-      console.log('data',this.pisosId)
-    })
+    // this.recoverPisos(this.pisosId)
   }
 
-  onEditar(piso: any ){
-    this.pisoEditar = piso;
+  public eliminarInmueble(id:any){
+    console.log('id', id)
+    this.servicesService.eliminarInmueble(id).subscribe(dato=>{
+      console.log(dato)
+    })
+    this.router.navigate(['api/inmuebles']);
   }
-  cerrarEdicion(){
-    this.pisoEditar = null;
+
+  public actualizarInmueble(id:string){
+    console.log('id: ',id)
+    this.router.navigate(['api/update',id]);
   }
+
+  public onCancelar(){
+    this.router.navigate(['api/inmuebles']);
+  }
+  
 
 }
