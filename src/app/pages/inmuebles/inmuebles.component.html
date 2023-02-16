@@ -2,12 +2,9 @@
 <div class="subMenuInmuebles">
     <div><button (click)="nuevoInmu()" type="button" class="btn btn-success">Nuevo inmueble</button></div>
     <div><p-inputSwitch (onChange)="handleChange($event)"></p-inputSwitch> Mostrar finalizados</div>
-    
-    
 </div>
 
-<p-table 
-[value]="inmuebles"
+<p-table [value]="inmuebles"
 [tableStyle]="{'min-width': '50rem'}"
 
 #dt1

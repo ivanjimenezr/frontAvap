@@ -1,1 +1,160 @@
-<p>vendedores works!</p>
+<h2>Lista de vendedores</h2>
+<div class="subMenuInmuebles">
+    <div><button (click)="nuevoVendedor()" type="button" class="btn btn-success">Nuevo vendedor</button></div>
+    <div><p-inputSwitch (onChange)="handleChange($event)"></p-inputSwitch> Mostrar finalizados</div>
+    
+    
+</div>
+
+<p-table 
+[value]="vendedores"
+[tableStyle]="{'min-width': '50rem'}"
+
+#dt1
+>
+ 
+
+<ng-template pTemplate="caption">
+    <div class="flex">
+        <button pButton label="Clear" class="p-element p-button-outlined p-button p-component" icon="pi pi-filter-slash" (click)="clear(dt1)">
+            <span class="p-button-icon p-button-icon-left pi pi-filter-slash" aria-hidden="true"></span>
+            <span class="p-button-label">Clear</span>
+        </button>
+
+        
+    </div>
+</ng-template>
+
+<ng-template pTemplate="header">
+        <tr>
+            <th>Nombre <p-columnFilter type="text" field="nombre" display="nombre"></p-columnFilter></th>
+            <th>DNI <p-columnFilter type="text" field="dni" display="dni"></p-columnFilter></th>
+            <th>Dirección <p-columnFilter type="text" field="direccion" display="direccion"></p-columnFilter></th>
+            <th>Email</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-vendedor>
+        <tr>
+            <td>{{vendedor.nombre}}</td>
+            <td>{{vendedor.dni}}</td>
+            <td>{{vendedor.direccion}}</td>
+            <td>{{vendedor.email}}</td>
+            <td></td>
+            <td>
+                <button (click)="actualizarVendedor(vendedor.id)" class="btn btn-info">Editar</button>
+                <button (click)="detallesVendedor(vendedor.id)" class="btn btn-primary" style="margin-left: 10px;">Detalles</button>
+                <button *ngIf="vendedor.finalizado == 0" (click)="finalizarVendedor(vendedor.id, 1)" class="btn btn-danger" style="margin-left: 10px;">Finalizar</button>
+                <button *ngIf="vendedor.finalizado == 1" (click)="finalizarVendedor(vendedor.id, 0)" class="btn btn-success" style="margin-left: 10px;">Activar</button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <table class="table table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Dirección</th>
+            <th>Provincia</th>
+            <th>Municipio</th>
+            <th>Precio</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let inmueble of inmuebles">
+            <th>{{inmueble.direccion}}</th>
+            <th>{{inmueble.provincia}}</th>
+            <th> {{inmueble.municipio}}</th>
+            <th> {{inmueble.precio}}</th>
+            <th>
+                <div *ngIf="inmueble.cru; else loggedOut">
+                    cru.
+                  </div>
+                  <ng-template #loggedOut>
+                    no cru                 
+                    </ng-template>
+            </th>
+            <th>
+                <button (click)="actualizarInmueble(inmueble.id)" class="btn btn-info">Editar</button>
+                <button (click)="detallesInmueble(inmueble.id)" class="btn btn-primary" style="margin-left: 10px;">Detalles</button>
+                <button *ngIf="inmueble.finalizado == 0" (click)="finalizarInmueble(inmueble.id, 1)" class="btn btn-danger" style="margin-left: 10px;">Finalizar</button>
+                <button *ngIf="inmueble.finalizado == 1" (click)="finalizarInmueble(inmueble.id, 0)" class="btn btn-success" style="margin-left: 10px;">Activar</button>
+                
+                
+            </th>
+            </tr>
+    </tbody>
+</table> -->
+<!-- {{inmuebles|json}} -->
+
+
+
+<!-- <p-toast></p-toast> -->
+
+<!-- <button class="btn btn-primary" (click)="newInmu()">Nuevo inmueble</button> -->
+
+<!-- <p-table [value]="inmuebles" [tableStyle]="{'min-width': '50rem'}">
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Dirección</th>
+            <th>Provincia
+                <p-columnFilter type="text" field="provincia" display="menu"></p-columnFilter>
+            </th>
+            <th>Municipio</th>
+            
+            <th>Precio</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-inmuebles>
+        <tr>
+            <td>
+                {{inmuebles.direccion}}
+            </td>
+            <td>
+                {{inmuebles.provincia}}
+                
+            </td>
+            <td>
+                {{inmuebles.municipio}}
+                
+            </td>
+            <td>
+                {{inmuebles.precio}}
+            </td>
+            <td>
+                <div *ngIf="inmuebles.cru; else loggedOut">
+                    cru.
+                  </div>
+                  <ng-template #loggedOut>
+                    no cru                 
+                    </ng-template>
+
+            </td>
+            <td>
+                <a href="details/{{inmuebles.key}}">+ info</a>
+            </td>
+        </tr>
+    </ng-template>
+</p-table> -->
+
+
+
+
+

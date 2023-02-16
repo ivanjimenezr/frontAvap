@@ -37,6 +37,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home.component';
 import { VendedoresComponent } from './pages/vendedores/vendedores.component';
 import { CompradoresComponent } from './pages/compradores/compradores.component';
+import { FormUpCompradoresComponent } from './pages/compradores/form-up-compradores/form-up-compradores.component';
+import { FormNewCompradoresComponent } from './pages/compradores/form-new-compradores/form-new-compradores.component';
+import { DetailsCompradoresComponent } from './pages/compradores/details-compradores/details-compradores.component';
+import { DetailsVendedoresComponent } from './pages/vendedores/details-vendedores/details-vendedores.component';
+import { FormNewVendedoresComponent } from './pages/vendedores/form-new-vendedores/form-new-vendedores.component';
+import { FormUpVendedoresComponent } from './pages/vendedores/form-up-vendedores/form-up-vendedores.component';
 
 
 
@@ -51,7 +57,13 @@ import { CompradoresComponent } from './pages/compradores/compradores.component'
     FooterComponent,
     HomeComponent,
     VendedoresComponent,
-    CompradoresComponent
+    CompradoresComponent,
+    FormUpCompradoresComponent,
+    FormNewCompradoresComponent,
+    DetailsCompradoresComponent,
+    DetailsVendedoresComponent,
+    FormNewVendedoresComponent,
+    FormUpVendedoresComponent
   ],
   imports: [
     BrowserModule,

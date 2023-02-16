@@ -57,11 +57,11 @@ export class InmueblesComponent implements OnInit {
 
   public actualizarInmueble(id:string){
     console.log('id: ',id)
-    this.router.navigate(['api/update',id]);
+    this.router.navigate(['api/inmuebles/update',id]);
   }
 
   public detallesInmueble(id:string){
-    this.router.navigate(['api/details',id]);
+    this.router.navigate(['api/inmuebles/details',id]);
   }
 
   private recoverPisosAct() {
@@ -75,6 +75,7 @@ export class InmueblesComponent implements OnInit {
     })
 
   }
+  
   public recoverPisosFin() {
     return this.servicesService.getInmueble().subscribe((data)=> {
       this.inmuebles = data.filter((item) => {
@@ -86,7 +87,7 @@ export class InmueblesComponent implements OnInit {
     })}
 
   nuevoInmu(){
-    this.router.navigate(['api/newInmu'])
+    this.router.navigate(['api/inmuebles/newInmu'])
   }
   
   // Funcion para mostrar archivados o activos

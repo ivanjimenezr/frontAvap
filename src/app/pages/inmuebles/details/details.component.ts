@@ -31,12 +31,12 @@ export class DetailsComponent implements OnInit {
     // this.recoverPisos(this.pisosId)
   }
 
-  public eliminarInmueble(id:any){
+  public contratoArras(id:any){
     console.log('id', id)
-    this.servicesService.eliminarInmueble(id).subscribe(dato=>{
+    this.servicesService.contratoArras(id).subscribe(dato=>{
       console.log(dato)
     })
-    this.router.navigate(['api/inmuebles']);
+    // this.router.navigate(['api/inmuebles']);
   }
 
   public finalizarInmueble(id:any, finalizado:number){
@@ -49,7 +49,7 @@ export class DetailsComponent implements OnInit {
 
   public actualizarInmueble(id:string){
     console.log('id: ',id)
-    this.router.navigate(['api/update',id]);
+    this.router.navigate(['api/inmuebles/update',id]);
   }
 
   public onCancelar(){

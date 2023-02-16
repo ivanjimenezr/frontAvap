@@ -70,7 +70,7 @@ export class FormNewComponent implements OnInit {
     let jsonFormNew : any = this.formNewInmueble.value
     this.servicesService.registrarInmueble(jsonFormNew).subscribe(dato=>{
       console.log('dato',dato);
-      this.router.navigate(['inmuebles'])
+      this.router.navigate(['api/inmuebles'])
     },error => console.log(error)
     )
   }

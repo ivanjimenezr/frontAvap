@@ -1,3 +1,4 @@
+import { Vendedores } from './models/vendedores';
 import { Inmuebles } from './models/inmuebles';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
@@ -45,6 +46,7 @@ export class ServicesService {
     return this.http.post(this.endpoint + '/inmuebles/',inmueble)
   }
 
+  // Actualizar inmueble
   updateInmueble(id:string,inmueble:any): Observable <Object>{
     return this.http.put(this.endpoint + '/inmuebles/'+id,inmueble)
       }
@@ -57,6 +59,53 @@ export class ServicesService {
   //Eliminar inmueble
   eliminarInmueble(id:string){
     return this.http.delete(this.endpoint + '/inmuebles/' + id)
+  }
+
+  // VENDEDORES
+
+  // Este método nos trae todos Vendedores
+  public getVendedores():Observable<Vendedores[]>{
+    console.log('dddddd')
+    return this.http.get<Vendedores[]>( `${this.endpoint}/vendedores/` );
+  }
+
+  // Get Vendedor by Id
+  public getVendedorId( id : any ) { 
+    const url: string = this.endpoint + '/vendedores/' + id;
+    return this.http.get( url );
+  }
+
+  // Publicar un nuevo vendedor
+  registrarVendedor(vendedor:Vendedores): Observable <Object>{
+    return this.http.post(this.endpoint + '/vendedores',vendedor)
+  }
+
+  // Actualizar vendedor
+  updateVendedor(id:string,vendedor:any): Observable <Object>{
+    return this.http.put(this.endpoint + '/vendedores/'+id,vendedor)
+      }
+
+  // Finalizar un vendedor
+  finalizarVendedor(id:string,vendedor:any): Observable <Object>{
+    return this.http.patch(this.endpoint + '/vendedores/'+id,vendedor)
+      }
+  
+  //Eliminar vendedor
+  eliminarVendedor(id:string){
+    return this.http.delete(this.endpoint + '/vendedores/' + id)
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  // Contratos
+  public contratoArras( id : any ) { 
+    const url: string = this.endpoint + '/inmuebles/arras/' + id;
+    return this.http.get( url );
   }
 
   // enviaNewInmu(jsonNewInmu:any){
