@@ -42,12 +42,16 @@ export class ServicesService {
   // Publicar un nuevo inmueble
 
   registrarInmueble(inmueble:Inmuebles): Observable <Object>{
-return this.http.post(this.endpoint + '/inmuebles/',inmueble)
+    return this.http.post(this.endpoint + '/inmuebles/',inmueble)
   }
 
   updateInmueble(id:string,inmueble:any): Observable <Object>{
-    console.log('type: ', typeof(inmueble))
     return this.http.put(this.endpoint + '/inmuebles/'+id,inmueble)
+      }
+
+  // Finalizar un inmueble
+  finalizarInmueble(id:string,inmueble:any): Observable <Object>{
+    return this.http.patch(this.endpoint + '/inmuebles/'+id,inmueble)
       }
 
   //Eliminar inmueble

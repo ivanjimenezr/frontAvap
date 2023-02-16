@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +13,10 @@ import { DetailsComponent } from './pages/inmuebles/details/details.component';
 import { FormUpComponent } from './pages/inmuebles/form-up/form-up.component';
 
 import {InputSwitchModule} from 'primeng/inputswitch';
+import {TableModule} from 'primeng/table';
+import {InputTextModule} from 'primeng/inputtext';
+
+
 
 // import {TableModule} from 'primeng/table';
 // import {ToastModule} from 'primeng/toast';
@@ -53,6 +58,9 @@ import { CompradoresComponent } from './pages/compradores/compradores.component'
     AppRoutingModule,
     HttpClientModule,
     InputSwitchModule,
+    TableModule,
+    BrowserAnimationsModule,
+    InputTextModule,
     // TableModule,
     // ToastModule,
     // CalendarModule,

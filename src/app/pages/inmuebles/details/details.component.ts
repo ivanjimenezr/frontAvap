@@ -39,6 +39,14 @@ export class DetailsComponent implements OnInit {
     this.router.navigate(['api/inmuebles']);
   }
 
+  public finalizarInmueble(id:any, finalizado:number){
+    let jsonFinalizadoinmueble : any = {"finalizado":finalizado}
+    this.servicesService.finalizarInmueble(id,jsonFinalizadoinmueble).subscribe(dato=>{
+      this.router.navigate(['api/inmuebles'])
+    },error => console.log(error)
+    )
+  }
+
   public actualizarInmueble(id:string){
     console.log('id: ',id)
     this.router.navigate(['api/update',id]);

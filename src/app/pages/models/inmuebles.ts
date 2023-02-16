@@ -1,7 +1,7 @@
 export interface Inmuebles {
     // key: String
-    tipologia: String,
-    provincia: String,
+    tipologia   : String,
+    provincia   : String,
     municipio: String,
     direccion: String,
     refCatastral: String,

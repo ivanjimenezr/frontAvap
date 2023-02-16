@@ -134,6 +134,8 @@ ngOnInit(): void {
     },error => console.log(error)
     )
   }
+
+  
   public onCancelar(){
     this.router.navigate(['api/inmuebles']);
   }

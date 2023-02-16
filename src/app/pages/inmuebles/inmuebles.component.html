@@ -1,4 +1,3 @@
-
 <h2>Lista de inmuebles</h2>
 <div class="subMenuInmuebles">
     <div><button (click)="nuevoInmu()" type="button" class="btn btn-success">Nuevo inmueble</button></div>
@@ -7,9 +6,64 @@
     
 </div>
 
+<p-table 
+[value]="inmuebles"
+[tableStyle]="{'min-width': '50rem'}"
+
+#dt1
+>
+ 
+
+<ng-template pTemplate="caption">
+    <div class="flex">
+        <button pButton label="Clear" class="p-element p-button-outlined p-button p-component" icon="pi pi-filter-slash" (click)="clear(dt1)">
+            <span class="p-button-icon p-button-icon-left pi pi-filter-slash" aria-hidden="true"></span>
+            <span class="p-button-label">Clear</span>
+        </button>
+
+        
+    </div>
+</ng-template>
+
+<ng-template pTemplate="header">
+        <tr>
+            <th>Dirección <p-columnFilter type="text" field="direccion" display="direccion"></p-columnFilter></th>
+            <th>Provincia <p-columnFilter type="text" field="provincia" display="provincia"></p-columnFilter></th>
+            <th>Municipio <p-columnFilter type="text" field="municipio" display="municipio"></p-columnFilter></th>
+            <th>Precio</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-inmueble>
+        <tr>
+            <td>{{inmueble.direccion}}</td>
+            <td>{{inmueble.provincia}}</td>
+            <td>{{inmueble.municipio}}</td>
+            <td>{{inmueble.precio}}</td>
+            <td></td>
+            <td>
+                <button (click)="actualizarInmueble(inmueble.id)" class="btn btn-info">Editar</button>
+                <button (click)="detallesInmueble(inmueble.id)" class="btn btn-primary" style="margin-left: 10px;">Detalles</button>
+                <button *ngIf="inmueble.finalizado == 0" (click)="finalizarInmueble(inmueble.id, 1)" class="btn btn-danger" style="margin-left: 10px;">Finalizar</button>
+                <button *ngIf="inmueble.finalizado == 1" (click)="finalizarInmueble(inmueble.id, 0)" class="btn btn-success" style="margin-left: 10px;">Activar</button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
 
 
-<table class="table table-striped">
+
+
+
+
+
+
+
+
+
+
+<!-- <table class="table table-striped">
     <thead class="table-dark">
         <tr>
             <th>Dirección</th>
@@ -37,13 +91,14 @@
             <th>
                 <button (click)="actualizarInmueble(inmueble.id)" class="btn btn-info">Editar</button>
                 <button (click)="detallesInmueble(inmueble.id)" class="btn btn-primary" style="margin-left: 10px;">Detalles</button>
-                <button (click)="finalizarInmueble(inmueble.id)" class="btn btn-danger" style="margin-left: 10px;">Finalizar</button>
+                <button *ngIf="inmueble.finalizado == 0" (click)="finalizarInmueble(inmueble.id, 1)" class="btn btn-danger" style="margin-left: 10px;">Finalizar</button>
+                <button *ngIf="inmueble.finalizado == 1" (click)="finalizarInmueble(inmueble.id, 0)" class="btn btn-success" style="margin-left: 10px;">Activar</button>
                 
                 
             </th>
             </tr>
     </tbody>
-</table>
+</table> -->
 <!-- {{inmuebles|json}} -->
 
 

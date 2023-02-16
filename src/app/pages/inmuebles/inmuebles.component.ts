@@ -2,6 +2,9 @@ import { Inmuebles } from './../models/inmuebles';
 import { Component, OnInit,OnDestroy  } from '@angular/core';
 import { ServicesService } from '../services.service';
 import { Router } from '@angular/router';
+import { ViewChild } from '@angular/core';
+import { Table } from 'primeng/table';
+
 
 
 
@@ -13,7 +16,8 @@ import { Router } from '@angular/router';
   // provi: [DialogService]
 })
 export class InmueblesComponent implements OnInit {
-
+  
+  
   public inmuebles:any;
   public checked: boolean;
   public funcion:any = this.recoverPisosAct()
@@ -28,6 +32,10 @@ export class InmueblesComponent implements OnInit {
     
 
   }
+  
+  clear(table: Table) {
+    table.clear();
+}
 
   public eliminarInmueble(id:any){
     console.log('id', id)
@@ -37,11 +45,11 @@ export class InmueblesComponent implements OnInit {
     this.recoverPisosAct(); 
   }
 
-  public finalizarInmueble(id:any){
-    let jsonFinalizadoinmueble : any = {"finalizado":1}
-    this.servicesService.updateInmueble(id,jsonFinalizadoinmueble).subscribe(dato=>{
+  public finalizarInmueble(id:any, finalizado:number){
+    let jsonFinalizadoinmueble : any = {"finalizado":finalizado}
+    this.servicesService.finalizarInmueble(id,jsonFinalizadoinmueble).subscribe(dato=>{
       console.log('inmoToFinalizar',dato);
-      // this.router.navigate(['api/inmuebles'])
+      this.router.navigate(['api/inmuebles'])
     },error => console.log(error)
     )
     this.recoverPisosAct(); 

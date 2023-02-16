@@ -121,7 +121,10 @@
                             style="background-color: #0062CC ;">Guardar</button> -->
 
                             <button (click)="actualizarInmueble(inmueble.id)" class="btn btn-info">Editar</button>
-                            <button (click)="eliminarInmueble(inmueble.id)" class="btn btn-danger" style="margin-left: 10px;">Finalizar</button>
+                            <!-- <button (click)="eliminarInmueble(inmueble.id)" class="btn btn-danger" style="margin-left: 10px;">Finalizar</button> -->
+
+                            <button *ngIf="inmueble.finalizado == 0" (click)="finalizarInmueble(inmueble.id, 1)" class="btn btn-danger" style="margin-left: 10px;">Finalizar</button>
+                            <button *ngIf="inmueble.finalizado == 1" (click)="finalizarInmueble(inmueble.id, 0)" class="btn btn-success" style="margin-left: 10px;">Activar</button>
                         </div>
               
                     </div>
