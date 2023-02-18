@@ -2,6 +2,9 @@
 
 <!-- --------------------------------- -->
 
+
+
+
 <div class="row mt-3 mx-3 gradient-custom" style="margin-top:25px ;">
     <div class="col-md-3">
       <div style="margin-top: 50px; margin-left: 10px;" class="text-center">
@@ -25,6 +28,11 @@
   
           <!-- <form class="mb-0"> -->
             <form [formGroup]="formUpInmueble" (submit)="submit()"class="mb-0">
+
+
+              
+
+
   
             <div class="row mb-4">
               <div class="col">
@@ -137,6 +145,12 @@
                   <div class="form-outline">
                     <!-- <input type="text" class="form-control input-custom" id="precio" formControlName="precio" name="precio">
                     <label class="form-label" for="precio">Precio</label> -->
+                    <!-- <select id='vendedores' name='vendedores' formControlName="vendedores" class="custom-select mr-sm-2" multiple>
+                      <option *ngFor="let item of vendedores" [value]="item.id">
+                        {{item.nombre}} - {{item.dni}}
+                      </option>    
+                  </select>
+                  <label class="form-label" for="vendedores">Vendedores</label> -->
                   </div>
                 </div>
               </div>

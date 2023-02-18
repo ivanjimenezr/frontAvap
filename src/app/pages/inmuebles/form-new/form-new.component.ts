@@ -28,6 +28,7 @@ export class FormNewComponent implements OnInit {
       finalizado: ['', Validators.required],
       llaves: ['', Validators.required],
       fechaAlta: ['', Validators.required],
+      // vendedores: ['', Validators.required],
     })
 
   // public inmueble:Inmuebles = new Inmuebles ;
@@ -53,11 +54,26 @@ export class FormNewComponent implements OnInit {
     }
   ]
   
+  public vendedores:any;
+
     
 
   constructor(private servicesService:ServicesService,public formBuilder:FormBuilder,public router: Router) { }
 
   ngOnInit(): void {
+    this.recoverVendedorAct()
+  }
+
+  private recoverVendedorAct() {
+    return this.servicesService.getVendedores().subscribe((data)=> {
+      this.vendedores = data.filter((item) => {
+        return item.finalizado === 0;
+      });
+      // this.inmuebles = data;
+      console.log('vendedores',this.vendedores)
+      // this.funcion = this.vendedores
+    })
+
   }
 
   public submit(){

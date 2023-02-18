@@ -65,7 +65,9 @@ export class InmueblesComponent implements OnInit {
   }
 
   private recoverPisosAct() {
+    
     return this.servicesService.getInmueble().subscribe((data)=> {
+      
       this.inmuebles = data.filter((item) => {
         return item.finalizado === 0;
       });

@@ -1,0 +1,24 @@
+
+<form [formGroup]="formNewAsocia" (submit)="submit()"class="mb-0">
+
+    
+    <p-multiSelect [options]="vendedores" [(ngModel)]="selectedVendedores" defaultLabel="Selecciona vendedor" optionLabel="nombre" formControlName="idVendedor" value="id" >
+    </p-multiSelect>
+    <!-- <select id='idVendedor' name='idVendedor' formControlName="idVendedor" class="custom-select mr-sm-2" multiple>
+        <option *ngFor="let item of vendedores" [value]="item.id"  >
+          {{item.nombre}}
+        </option>    
+    </select>
+      <label class="form-label" for="tipologia">Vendedores</label> -->
+
+
+      <button type="submit" class="btn btn-primary btn-rounded"
+      style="background-color: #0062CC ;">Guardar</button>
+    </form>
+
+
+
+{{pisosId}}
+
+<p>{{inmueble|json}}</p>
+<p>{{vendedores|json}}</p>

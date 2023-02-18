@@ -14,7 +14,8 @@ export class DetailsComponent implements OnInit {
 
   public id:any
   public inmueble:any
-
+  public display: boolean = false;
+  public vendedor:any
 
 
   constructor(private servicesService : ServicesService, private activatedRoute : ActivatedRoute, private router : Router) { }
@@ -25,11 +26,16 @@ export class DetailsComponent implements OnInit {
       console.log('fffff',this.id)
       this.servicesService.getInmuebleId(this.id).subscribe(dato =>{
         this.inmueble = dato
+        console.log('dato: ', dato)
       })
     })
 
-    // this.recoverPisos(this.pisosId)
+    this.getVendedorInmueble(this.id)
   }
+
+  public showDialog() {
+    this.display = true;
+}
 
   public contratoArras(id:any){
     console.log('id', id)
@@ -38,7 +44,14 @@ export class DetailsComponent implements OnInit {
     })
     // this.router.navigate(['api/inmuebles']);
   }
-
+  public getVendedorInmueble(id:any){
+    console.log('id', id)
+    this.servicesService.getVendedorInmueble(id).subscribe(dato=>{
+      console.log('getVendedorInmueble: ',dato)
+      this.vendedor = dato
+    })
+    // this.router.navigate(['api/inmuebles']);
+  }
   public finalizarInmueble(id:any, finalizado:number){
     let jsonFinalizadoinmueble : any = {"finalizado":finalizado}
     this.servicesService.finalizarInmueble(id,jsonFinalizadoinmueble).subscribe(dato=>{

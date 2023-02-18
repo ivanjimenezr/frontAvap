@@ -4,6 +4,15 @@
             <!-- ----------------------------------- -->
 
             <div *ngIf="inmueble" class="row mt-3 mx-3 gradient-custom" style="margin-top:25px ;">
+
+              <p-dialog header="Title" [(visible)]="display">
+                <ng-template pTemplate="header">
+                  Header content here
+              </ng-template>
+                <app-asocia-inmueble [pisosId]="inmueble.id"></app-asocia-inmueble>
+              </p-dialog>
+
+
                 <div class="col-md-3">
                   <div style="margin-top: 50px; margin-left: 10px;" class="text-center">
                     
@@ -109,8 +118,12 @@
                             </div>
                             <div class="col">
                               <div class="form-outline">
-                                <!-- <input type="text" class="form-control input-custom" id="precio" formControlName="precio" name="precio">
-                                <label class="form-label" for="precio">Precio</label> -->
+                                <label class="form-label" for="vendedores"><b>Vendedores:</b>
+                                  <p *ngFor="let vende of vendedor">
+                                      {{vende.idVendedor}}
+                                  </p> </label>
+                                <!-- <input type="text" class="form-control input-custom" id="vendedores" formControlName="vendedores" name="vendedores">
+                                <label class="form-label" for="vendedores">Vendedores</label> -->
                               </div>
                             </div>
                           </div>
@@ -120,7 +133,10 @@
                           <!-- <button type="submit" class="btn btn-primary btn-rounded"
                             style="background-color: #0062CC ;">Guardar</button> -->
 
-                            <button (click)="actualizarInmueble(inmueble.id)" class="btn btn-info">Editar</button>
+                            
+                            <button type="button" (click)="showDialog()" icon="pi pi-info-circle" label="Show" class="btn btn-success">Asociar</button>
+
+                            <button (click)="actualizarInmueble(inmueble.id)" class="btn btn-info" style="margin-left: 10px;">Editar</button>
                             <!-- <button (click)="eliminarInmueble(inmueble.id)" class="btn btn-danger" style="margin-left: 10px;">Finalizar</button> -->
                             
                             <button *ngIf="inmueble.finalizado == 0" (click)="finalizarInmueble(inmueble.id, 1)" class="btn btn-danger" style="margin-left: 10px;">Finalizar</button>
@@ -133,4 +149,4 @@
                 </div>
               </div>
             
-              <div><p></p></div>
+              <div><p><!-- {{vendedor|json}} --></p></div>

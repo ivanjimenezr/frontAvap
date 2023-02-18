@@ -20,6 +20,8 @@ export class FormUpComponent implements OnInit {
   public pisosId? : any 
   public datosUpdate? :any
 
+
+
   // crearFormulario(){
   //   this.formActualizar = this.formBuilder.group({
   //     titular:['', [Validators.required]],
@@ -47,6 +49,8 @@ export class FormUpComponent implements OnInit {
     finalizado: ['', Validators.required],
     llaves: ['', Validators.required],
     fechaAlta: ['', Validators.required],
+    // vendedores: ['', Validators.required],
+
   })
 
 // public inmueble:Inmuebles = new Inmuebles ;
@@ -72,11 +76,14 @@ export class FormUpComponent implements OnInit {
   }
 ]
 
-  
+
+
+
 
 constructor(private servicesService:ServicesService,public formBuilder:FormBuilder,public router: Router, private activatedRoute: ActivatedRoute) { }
 
 ngOnInit(): void {
+
 
   this.pisosId = this.activatedRoute.snapshot.paramMap.get('id');
   console.log('idInmueble', this.pisosId)
@@ -98,6 +105,7 @@ ngOnInit(): void {
       'finalizado': this.datosUpdate.finalizado,
       'llaves': this.datosUpdate.llaves,
       'fechaAlta': this.datosUpdate.fechaAlta,
+      // 'vendedores': this.datosUpdate.vendedores,
     })
   }) 
 
@@ -118,16 +126,19 @@ ngOnInit(): void {
   //     console.log('kkkk',this.pisosId)
   //   })
   }
+
+  
   
   
   public submit(){
-    console.log(this.formUpInmueble.value)
+    console.log('this.formUpInmueble.value',this.formUpInmueble.value)
     // console.log(this.formNewInmueble.value)
     this.updateInmueble()
   }
   
   public updateInmueble(){
     let jsonFormUp : any = this.formUpInmueble.value
+    console.log('jsonFormUp: ',jsonFormUp)
     this.servicesService.updateInmueble(this.pisosId,jsonFormUp).subscribe(dato=>{
       console.log('datoToUp',dato);
       this.router.navigate(['api/inmuebles'])
@@ -139,6 +150,8 @@ ngOnInit(): void {
   public onCancelar(){
     this.router.navigate(['api/inmuebles']);
   }
+
+  
 }
 
 
