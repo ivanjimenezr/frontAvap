@@ -12,5 +12,6 @@ export interface Inmuebles {
     precio: String,
     finalizado: Number,
     llaves: Number,
-    fechaAlta: String
+    fechaAlta: String,
+    // vendedores?: any
 }

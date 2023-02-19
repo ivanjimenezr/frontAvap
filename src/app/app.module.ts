@@ -15,6 +15,10 @@ import { FormUpComponent } from './pages/inmuebles/form-up/form-up.component';
 import {InputSwitchModule} from 'primeng/inputswitch';
 import {TableModule} from 'primeng/table';
 import {InputTextModule} from 'primeng/inputtext';
+import {DialogModule} from 'primeng/dialog';
+import {MultiSelectModule} from 'primeng/multiselect';
+
+
 
 
 
@@ -43,6 +47,7 @@ import { DetailsCompradoresComponent } from './pages/compradores/details-comprad
 import { DetailsVendedoresComponent } from './pages/vendedores/details-vendedores/details-vendedores.component';
 import { FormNewVendedoresComponent } from './pages/vendedores/form-new-vendedores/form-new-vendedores.component';
 import { FormUpVendedoresComponent } from './pages/vendedores/form-up-vendedores/form-up-vendedores.component';
+import { AsociaInmuebleComponent } from './pages/inmuebles/asocia-inmueble/asocia-inmueble.component';
 
 
 
@@ -63,7 +68,8 @@ import { FormUpVendedoresComponent } from './pages/vendedores/form-up-vendedores
     DetailsCompradoresComponent,
     DetailsVendedoresComponent,
     FormNewVendedoresComponent,
-    FormUpVendedoresComponent
+    FormUpVendedoresComponent,
+    AsociaInmuebleComponent
   ],
   imports: [
     BrowserModule,
@@ -73,6 +79,8 @@ import { FormUpVendedoresComponent } from './pages/vendedores/form-up-vendedores
     TableModule,
     BrowserAnimationsModule,
     InputTextModule,
+    DialogModule,
+    MultiSelectModule,
     // TableModule,
     // ToastModule,
     // CalendarModule,
