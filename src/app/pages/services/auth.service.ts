@@ -32,9 +32,15 @@ export class AuthService {
   public signIn(iuserLogin: IuserLogin) {
     console.log('iuserLogin: ',iuserLogin)
     return this.http.post<any>(`${this.endpoint}/user/login`, iuserLogin).subscribe((res: any) => {
-      console.log('res: ',res)  
-      localStorage.setItem('access_token', res.access_token)
-      this.router.navigate(['api/inmuebles']);
+      console.log('res: ',res)
+      if  ('error' in res) {
+        console.log('No se ha encontrado el usuario')
+      }else {
+
+        localStorage.setItem('access_token', res.access_token)
+        this.router.navigate(['api/inmuebles']);
+      }
+
         
 				//Seteamos el token
         // this.getUserProfile(res._id).subscribe((res) => {
