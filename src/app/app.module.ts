@@ -48,6 +48,10 @@ import { DetailsVendedoresComponent } from './pages/vendedores/details-vendedore
 import { FormNewVendedoresComponent } from './pages/vendedores/form-new-vendedores/form-new-vendedores.component';
 import { FormUpVendedoresComponent } from './pages/vendedores/form-up-vendedores/form-up-vendedores.component';
 import { AsociaInmuebleComponent } from './pages/inmuebles/asocia-inmueble/asocia-inmueble.component';
+import { LoginComponent } from './pages/login/login.component';
+import { InterceptorServiceService } from './pages/services/interceptor-service.service'
+import { LoginSuccessfulComponent } from './pages/login-successful/login-successful.component'
+
 
 
 
@@ -69,7 +73,10 @@ import { AsociaInmuebleComponent } from './pages/inmuebles/asocia-inmueble/asoci
     DetailsVendedoresComponent,
     FormNewVendedoresComponent,
     FormUpVendedoresComponent,
-    AsociaInmuebleComponent
+    AsociaInmuebleComponent,
+    LoginComponent,
+    LoginSuccessfulComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -81,22 +88,16 @@ import { AsociaInmuebleComponent } from './pages/inmuebles/asocia-inmueble/asoci
     InputTextModule,
     DialogModule,
     MultiSelectModule,
-    // TableModule,
-    // ToastModule,
-    // CalendarModule,
-    // SliderModule,
-    // MultiSelectModule,
-    // ContextMenuModule,
-    // DialogModule,
-    // ButtonModule,
-    // DropdownModule,
-    // ProgressBarModule,
-    // InputTextModule,
     CardModule,
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [ServicesService],
+  // providers: [ServicesService],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: InterceptorServiceService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

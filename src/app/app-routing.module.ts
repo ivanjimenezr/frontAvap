@@ -1,3 +1,5 @@
+import { LoginComponent } from './pages/login/login.component';
+import { AuthGuardService } from './pages/services/auth-guard.service';
 import { FormNewCompradoresComponent } from './pages/compradores/form-new-compradores/form-new-compradores.component';
 import { FormUpCompradoresComponent } from './pages/compradores/form-up-compradores/form-up-compradores.component';
 import { DetailsCompradoresComponent } from './pages/compradores/details-compradores/details-compradores.component';
@@ -17,23 +19,25 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {path: 'api/inmuebles', component: InmueblesComponent},
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  {path: 'login', component:LoginComponent},
+  {path: 'api/inmuebles', component: InmueblesComponent,canActivate:[AuthGuardService]},
   
-  {path: 'api/inmuebles/details/:id', component:DetailsComponent},
-  {path: 'api/inmuebles/update/:id', component:FormUpComponent},
-  {path: 'api/inmuebles/newInmu', component:FormNewComponent},
+  {path: 'api/inmuebles/details/:id', component:DetailsComponent,canActivate:[AuthGuardService]},
+  {path: 'api/inmuebles/update/:id', component:FormUpComponent,canActivate:[AuthGuardService]},
+  {path: 'api/inmuebles/newInmu', component:FormNewComponent,canActivate:[AuthGuardService]},
   
-  {path: 'api/vendedores', component:VendedoresComponent},
-  {path: 'api/vendedores/details/:id', component:DetailsVendedoresComponent},
-  {path: 'api/vendedores/update/:id', component:FormUpVendedoresComponent},
-  {path: 'api/vendedores/newVendedor', component:FormNewVendedoresComponent},
+  {path: 'api/vendedores', component:VendedoresComponent,canActivate:[AuthGuardService]},
+  {path: 'api/vendedores/details/:id', component:DetailsVendedoresComponent,canActivate:[AuthGuardService]},
+  {path: 'api/vendedores/update/:id', component:FormUpVendedoresComponent,canActivate:[AuthGuardService]},
+  {path: 'api/vendedores/newVendedor', component:FormNewVendedoresComponent,canActivate:[AuthGuardService]},
   
   
   
-  {path: 'api/compradores', component:CompradoresComponent},
-  {path: 'api/compradores/details/:id', component:DetailsCompradoresComponent},
-  {path: 'api/compradores/update/:id', component:FormUpCompradoresComponent},
-  {path: 'api/compradores/newComprador', component:FormNewCompradoresComponent},
+  {path: 'api/compradores', component:CompradoresComponent,canActivate:[AuthGuardService]},
+  {path: 'api/compradores/details/:id', component:DetailsCompradoresComponent,canActivate:[AuthGuardService]},
+  {path: 'api/compradores/update/:id', component:FormUpCompradoresComponent,canActivate:[AuthGuardService]},
+  {path: 'api/compradores/newComprador', component:FormNewCompradoresComponent,canActivate:[AuthGuardService]},
 ];
 
 @NgModule({

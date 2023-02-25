@@ -1,0 +1,18 @@
+<h2>Bienvenido</h2>
+<!-- formGroup es el nombre de nuestro formFroup del .ts -->
+<form novalidate (ngSubmit)="loginUser()" [formGroup]="userLoginForm">
+  <div>
+    <input class="input" type="text" id="email" formControlName="email" placeholder="Email" />
+    <div *ngIf="!userLoginForm.get('email')?.valid &&
+      (userLoginForm.get('email')?.dirty || submitted)">
+      Has introducido mal tu email
+    </div>
+  </div>
+    
+  <div>
+    <input class="input" type="password" id="password" formControlName="password" placeholder="Password" />
+  </div>
+  <!-- Botón deshabilitado hasta que el formulario sea valid -->
+  <button type="submit" [disabled]="!userLoginForm.valid">Login</button>
+
+</form>
