@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 
@@ -14,22 +14,12 @@ import { Router } from '@angular/router';
 export class ServicesService {
 
   // endpoint: string = 'https://auv7fn.deta.dev';
-  endpoint: string = 'http://127.0.0.1:8000';
-  // endpoint: string = 'http://217.160.32.229:8004';
+  // endpoint: string = 'http://127.0.0.1:8000';
+  endpoint: string = 'http://217.160.32.229:8000';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
 
 
   constructor(private http: HttpClient, public router: Router) { }
-
-//   getInmueble(): Observable<any> {
-//     let api = `${this.endpoint}/inmuebles/`;
-//     return this.http.get(api, { headers: this.headers }).pipe(
-//       map((res: any) => {
-//         return res || {}
-//       }),
-//       catchError(this.handleError)
-//     )
-//   }
   
   // Este método nos trae todos Inmuebles
   public getInmueble():Observable<Inmuebles[]>{ 
@@ -50,7 +40,7 @@ export class ServicesService {
 
   // Actualizar inmueble
   updateInmueble(id:string,inmueble:any): Observable <Object>{
-    return this.http.put(this.endpoint + '/inmuebles/'+id,inmueble)
+    return this.http.post(this.endpoint + '/inmuebles/'+id,inmueble)
       }
 
   // Finalizar un inmueble
@@ -67,7 +57,6 @@ export class ServicesService {
 
   // Este método nos trae todos Vendedores
   public getVendedores():Observable<Vendedores[]>{
-    console.log('dddddd')
     return this.http.get<Vendedores[]>( `${this.endpoint}/vendedores/` );
   }
 
@@ -114,9 +103,13 @@ export class ServicesService {
   
   
   // Contratos
-  public contratoArras( id : any ) { 
-    const url: string = this.endpoint + '/inmuebles/arras/' + id;
-    return this.http.get( url );
+  public contratoArras( id : any, x : any ):Observable<any> { 
+    const url: string = this.endpoint + '/arras/' + id;
+    const param = new HttpParams().set('filename',x);
+    const options = {
+      params: param
+    }
+    return this.http.get( url, {...options, responseType: 'blob'} );
   }
 
   // enviaNewInmu(jsonNewInmu:any){

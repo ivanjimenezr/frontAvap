@@ -37,13 +37,13 @@ export class DetailsComponent implements OnInit {
     this.display = true;
 }
 
-  public contratoArras(id:any){
-    console.log('id', id)
-    this.servicesService.contratoArras(id).subscribe(dato=>{
-      console.log(dato)
-    })
-    // this.router.navigate(['api/inmuebles']);
-  }
+  // public contratoArras(id:any){
+  //   console.log('id', id)
+  //   this.servicesService.contratoArras(id).subscribe(dato=>{
+  //     console.log(dato)
+  //   })
+  //   // this.router.navigate(['api/inmuebles']);
+  // }
   public getVendedorInmueble(id:any){
     console.log('id', id)
     this.servicesService.getVendedorInmueble(id).subscribe(dato=>{

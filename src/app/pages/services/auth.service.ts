@@ -12,8 +12,8 @@ import { User, IuserLogin, IcurrentUserId } from '../models/user';
 export class AuthService {
 
   //Definimos el endpoint y los headers para poder realizar la petición
-  // public endpoint: string = 'http://217.160.32.229:8004'; 
-  public endpoint: string = 'http://127.0.0.1:8000'; 
+  public endpoint: string = 'http://217.160.32.229:8000'; 
+  // public endpoint: string = 'http://127.0.0.1:8000'; 
   public headers = new HttpHeaders().set('Content-Type', 'application/json');
   public currentUser : Object = {}; //Aquí almacenaremos el login => token + ID
   public currentUserId! : IcurrentUserId

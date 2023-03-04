@@ -17,20 +17,20 @@ import {TableModule} from 'primeng/table';
 import {InputTextModule} from 'primeng/inputtext';
 import {DialogModule} from 'primeng/dialog';
 import {MultiSelectModule} from 'primeng/multiselect';
+import { ButtonModule } from 'primeng/button';
+import { RippleModule } from 'primeng/ripple';
 
 
 
 
 
-// import {TableModule} from 'primeng/table';
 // import {ToastModule} from 'primeng/toast';
 // import {CalendarModule} from 'primeng/calendar';
 // import {SliderModule} from 'primeng/slider';
 // import {MultiSelectModule} from 'primeng/multiselect';
 // import {ContextMenuModule} from 'primeng/contextmenu';
-// import {DialogModule} from 'primeng/dialog';
 // import {ButtonModule} from 'primeng/button';
-// import {DropdownModule} from 'primeng/dropdown';
+import {DropdownModule} from 'primeng/dropdown';
 // import {ProgressBarModule} from 'primeng/progressbar';
 // import {InputTextModule} from 'primeng/inputtext';
 import { NavbarComponent } from './core/navbar/navbar.component';
@@ -90,14 +90,18 @@ import { LoginSuccessfulComponent } from './pages/login-successful/login-success
     MultiSelectModule,
     CardModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DropdownModule,
+    ButtonModule,
+    RippleModule
   ],
+  exports: [ TableModule ],
   // providers: [ServicesService],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: InterceptorServiceService,
     multi: true
-  }],
+  },ServicesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

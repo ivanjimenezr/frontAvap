@@ -39,7 +39,7 @@ ngOnInit(): void {
   console.log('pisosId: ',this.pisosId)
   this.primengConfig.ripple = true;
   this.recoverVendedorAct()
-  this.getInmuebleId()
+  // this.getInmuebleId()
 
 }
 
@@ -69,9 +69,9 @@ private recoverVendedorAct() {
   })
 
 }
-private getInmuebleId(){
-  this.servicesService.getInmuebleId(this.pisosId).subscribe(dato =>{
-    this.inmueble = dato
-    console.log('dato: ', dato)
-  })}
+// private getInmuebleId(){
+//   this.servicesService.getInmuebleId(this.pisosId).subscribe(dato =>{
+//     this.inmueble = dato
+//     console.log('dato: ', dato)
+//   })}
 }
