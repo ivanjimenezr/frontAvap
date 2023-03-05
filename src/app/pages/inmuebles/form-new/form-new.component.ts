@@ -28,12 +28,26 @@ export class FormNewComponent implements OnInit {
       finalizado: ['', Validators.required],
       llaves: ['', Validators.required],
       fechaAlta: ['', Validators.required],
+      comisionVen: ['', Validators.required],
+      observaciones: ['', Validators.required],
+      comercial: ['', Validators.required],
+      dormitorios: ['', Validators.required],
+      banos: ['', Validators.required],
+      exterior: ['', Validators.required],
+      comisionCom: ['', Validators.required],
+      operacion: ['', Validators.required],
+      cee: ['', Validators.required],
+      descripcion: ['', Validators.required],
+      ascensor: ['', Validators.required],
       // vendedores: ['', Validators.required],
     })
 
   // public inmueble:Inmuebles = new Inmuebles ;
 
-    tipologias:any = [
+  public selectedComerciales: string[] = [];
+  public comerciales:any[];
+
+    public tipologias:any = [
       "Ático",
       "Chalé pareado",
       "Chalé independiente",
@@ -44,7 +58,12 @@ export class FormNewComponent implements OnInit {
       "Trastero"
     ]
 
-    siNo:any = [{
+   public  operacion:any = [
+      "Venta",
+      "Alquiler",
+    ]
+
+    public siNo:any = [{
       "key":"Si",
       "value":1
     },
@@ -54,23 +73,34 @@ export class FormNewComponent implements OnInit {
     }
   ]
   
-  public vendedores:any;
+  // public vendedores:any;
 
     
 
   constructor(private servicesService:ServicesService,public formBuilder:FormBuilder,public router: Router) { }
 
   ngOnInit(): void {
-    this.recoverVendedorAct()
+    // this.recoverVendedorAct()
+    this.recoverComerciales()
   }
 
-  private recoverVendedorAct() {
-    return this.servicesService.getVendedores().subscribe((data)=> {
-      this.vendedores = data.filter((item) => {
-        return item.finalizado === 0;
-      });
+  // private recoverVendedorAct() {
+  //   return this.servicesService.getVendedores().subscribe((data)=> {
+  //     this.vendedores = data.filter((item) => {
+  //       return item.finalizado === 0;
+  //     });
+  //     // this.inmuebles = data;
+  //     console.log('vendedores',this.vendedores)
+  //     // this.funcion = this.vendedores
+  //   })
+
+  // }
+
+  private recoverComerciales() {
+    return this.servicesService.getComerciales().subscribe((data)=> {
+      this.comerciales = data
       // this.inmuebles = data;
-      console.log('vendedores',this.vendedores)
+      console.log('comerciales',this.comerciales)
       // this.funcion = this.vendedores
     })
 

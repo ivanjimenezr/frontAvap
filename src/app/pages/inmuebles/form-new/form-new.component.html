@@ -74,6 +74,28 @@
               </div>
             </div>
             <div class="row mb-4">
+              <div class="col">
+                <div class="form-outline">
+                  <select id='operacion' name='operacion' formControlName="operacion" class="custom-select mr-sm-2">
+                    <option *ngFor="let item of operacion" [value]="item"  >
+                      {{item}}
+                    </option>    
+                </select>
+                  <label class="form-label" for="operacion">Operación</label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-outline">
+                  <select id='cee' name='cee' formControlName="cee" class="custom-select mr-sm-2">
+                      <option *ngFor="let item of siNo" [value]="item.value">
+                        {{item.key}}
+                      </option>    
+                  </select>
+                  <label class="form-label" for="cee">CEE</label>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-4">
                 <div class="col">
                   <div class="form-outline">
                     <!-- <input type="text" class="form-control input-custom" id="descripNotaSimple" formControlName="descripNotaSimple" name="descripNotaSimple"> -->
@@ -134,12 +156,87 @@
                 </div>
                 <div class="col">
                   <div class="form-outline">
+                    <input type="text" class="form-control input-custom" id="comisionVen" formControlName="comisionVen" name="comisionVen">
+                    <label class="form-label" for="comisionVen">Comisión vendedor</label>
                     <!-- <select id='vendedores' name='vendedores' formControlName="vendedores" class="custom-select mr-sm-2" multiple>
                       <option *ngFor="let item of vendedores" [value]="item.id">
                         {{item.nombre}}
                       </option>    
                   </select>
                   <label class="form-label" for="vendedores">Vendedores</label> -->
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-4">
+                <div class="col">
+                  <div class="form-outline">
+                    <input type="text" class="form-control input-custom" id="comisionCom" formControlName="comisionCom" name="comisionCom">
+                    <label class="form-label" for="comisionCom">Comisión comprado</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-outline">
+                    <select id='exterior' name='exterior' formControlName="exterior" class="custom-select mr-sm-2">
+                      <option *ngFor="let item of siNo" [value]="item.value">
+                        {{item.key}}
+                      </option>    
+                  </select>
+                  <label class="form-label" for="exterior">Exterior</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mb-4">
+                <div class="col">
+                  <div class="form-outline">
+                    <select id='comercial' name='comercial' formControlName="comercial" class="custom-select mr-sm-2">
+                        <option *ngFor="let item of comerciales" [value]="comerciales">
+                          {{item.nombre}}
+                        </option>    
+                    </select>
+                    <label class="form-label" for="comercial">Comercial</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-outline">
+                    <input type="text" class="form-control input-custom" id="dormitorios" formControlName="dormitorios" name="dormitorios">
+                    <label class="form-label" for="dormitorios">Dormitorios</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mb-4">
+                <div class="col">
+                  <div class="form-outline">
+                    <input type="text" class="form-control input-custom" id="banos" formControlName="banos" name="banos">
+                    <label class="form-label" for="banos">Baños</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-outline">
+                    <textarea class="form-control" aria-label="With textarea" name="textarea" class="form-control" id="observaciones" formControlName="observaciones" name="observaciones"></textarea>
+                    <label class="form-label" for="observaciones">Observaciones</label>
+                    
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mb-4">
+                <div class="col">
+                  <div class="form-outline">
+                    <textarea class="form-control" aria-label="With textarea" name="descripcion" class="form-control" id="descripcion" formControlName="descripcion"></textarea>
+                    <label class="form-label" for="descripcion">Descripción del inmueble</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-outline">
+                    <select id='ascensor' name='ascensor' formControlName="ascensor" class="custom-select mr-sm-2">
+                      <option *ngFor="let item of siNo" [value]="item.value">
+                        {{item.key}}
+                      </option>    
+                  </select>
+                    <label class="form-label" for="ascensor">Ascensor</label>
+                    
                   </div>
                 </div>
               </div>

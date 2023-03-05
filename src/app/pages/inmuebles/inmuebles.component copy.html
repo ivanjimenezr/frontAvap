@@ -1,0 +1,335 @@
+
+
+
+<h2>Lista de inmuebles</h2>
+
+<div class="subMenuInmuebles">
+    <div><button (click)="nuevoInmu()" type="button" class="btn btn-success">Nuevo inmueble</button></div>
+    <div><p-inputSwitch (onChange)="handleChange($event)"></p-inputSwitch> Mostrar finalizados</div>
+</div>
+
+<p-table [value]="inmuebles1" editMode="row" dataKey="id" #dt1>
+    
+    
+    <ng-template pTemplate="caption">
+        <div class="flex">
+            <button pButton label="Clear" class="p-element p-button-outlined p-button p-component" icon="pi pi-filter-slash" (click)="clear(dt1)">
+                <span class="p-button-icon p-button-icon-left pi pi-filter-slash" aria-hidden="true"></span>
+                <span class="p-button-label">Clear</span>
+            </button>
+            
+            
+        </div>
+    </ng-template>
+    
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Id <p-columnFilter type="text" field="id" display="id"></p-columnFilter></th>
+            <th>Tipo <p-columnFilter type="text" field="tipo" display="tipo"></p-columnFilter></th>
+            <th>Dirección <p-columnFilter type="text" field="direccion" display="direccion"></p-columnFilter></th>
+            <th>Provincia <p-columnFilter type="text" field="provincia" display="provincia"></p-columnFilter></th>
+            <th>Municipio <p-columnFilter type="text" field="municipio" display="municipio"></p-columnFilter></th>
+            <th>Superficie <p-columnFilter type="text" field="superficie" display="superficie"></p-columnFilter></th>
+            <th>Precio</th>
+            <th>Ref. catastral <p-columnFilter type="text" field="refCatastral" display="refCatastral"></p-columnFilter></th>
+            <th title="Descripción nota simple">DNS <p-columnFilter type="text" field="descripNotaSimple" display="descripNotaSimple"></p-columnFilter></th>
+            <th title="Inscripción Registro">IR <p-columnFilter type="text" field="inscripcionRegistro" display="inscripcionRegistro"></p-columnFilter></th>
+            <th>CRU<p-columnFilter type="text" field="cru" display="cru"></p-columnFilter></th>
+            <th>Finalizado<p-columnFilter type="text" field="finalizado" display="finalizado"></p-columnFilter></th>
+            <th>Llaves<p-columnFilter type="text" field="llaves" display="llaves"></p-columnFilter></th>
+            <th>Fecha alta<p-columnFilter type="text" field="fechaAlta" display="fechaAlta"></p-columnFilter></th>
+            <th>Vendedores</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-inmueble let-editing="editing" let-ri="rowIndex">
+        <p-dialog header="Title" [(visible)]="display" [style]="{width: '50vw',height: '25vw'}">
+            <ng-template pTemplate="header">
+              Header content here
+          </ng-template>
+            <app-asocia-inmueble [pisosId]="inmueble.id"></app-asocia-inmueble>
+          </p-dialog>
+        <tr [pEditableRow]="inmueble">
+            <td pEditableColumn >
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="inmueble.id">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{inmueble.id}}
+                    </ng-template>
+            </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="inmueble.tipologia">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{inmueble.tipologia}}
+                    </ng-template>
+                </p-cellEditor>
+                
+            </td>
+            <td pEditableColumn >
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="inmueble.direccion">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{inmueble.direccion}}, {{inmueble.municipio}}, {{inmueble.provincia}}
+                    </ng-template>
+            </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="inmueble.provincia">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{inmueble.provincia}}
+                    </ng-template>
+            </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="inmueble.municipio">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{inmueble.municipio}}
+                    </ng-template>
+            </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="inmueble.superficie">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{inmueble.superficie}}
+                    </ng-template>
+                </p-cellEditor>
+                
+            </td>
+            
+            <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="inmueble.precio">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{inmueble.precio}}
+                    </ng-template>
+            </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="inmueble.refCatastral">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{inmueble.refCatastral}}
+                    </ng-template>
+            </p-cellEditor>
+                </td>
+            <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="inmueble.descripNotaSimple">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{inmueble.descripNotaSimple}}
+                    </ng-template>
+            </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="inmueble.inscripcionRegistro">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{inmueble.inscripcionRegistro}}
+                    </ng-template>
+            </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="inmueble.cru">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{inmueble.cru}}
+                    </ng-template>
+            </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <!-- <input pInputText type="text" [(ngModel)]="inmueble.finalizado"> -->
+                        <p-dropdown [options]="siNo" [(ngModel)]="inmueble.finalizado" [style]="{'width':'100%'}"></p-dropdown>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{inmueble.finalizado}}
+                    </ng-template>
+            </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <!-- <input pInputText type="text" [(ngModel)]="inmueble.llaves"> -->
+                        <p-dropdown [options]="siNo" [(ngModel)]="inmueble.llaves" [style]="{'width':'100%'}"></p-dropdown>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{inmueble.llaves}}
+                    </ng-template>
+            </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="inmueble.fechaAlta">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{inmueble.fechaAlta}}
+                    </ng-template>
+            </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <!-- <input pInputText type="text" [(ngModel)]="inmueble.finalizado"> -->
+                        <p-multiSelect [options]="vendedores" [(ngModel)]="selectedVendedores" defaultLabel="Selecciona vendedor" optionLabel="nombre"  >
+                        </p-multiSelect>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        <p *ngFor="let item of inmueble.vendedores">
+                            {{item.nombre}}
+                        </p>
+                        
+                    </ng-template>
+            </p-cellEditor>
+            </td>
+            <td></td>
+            <td style="text-align:center">
+                <button (click)="actualizarInmueble(inmueble.id)" class="btn btn-info">Editar</button>
+                <!-- <button (click)="detallesInmueble(inmueble.id)" class="btn btn-primary" style="margin-left: 10px;">Detalles</button>
+                <button *ngIf="inmueble.finalizado == 0" (click)="finalizarInmueble(inmueble.id, 1)" class="btn btn-danger" style="margin-left: 10px;">Finalizar</button>
+                <button *ngIf="inmueble.finalizado == 1" (click)="finalizarInmueble(inmueble.id, 0)" class="btn btn-success" style="margin-left: 10px;">Activar</button> -->
+                <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(inmueble)" class="p-button-rounded p-button-text"></button>
+                <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(inmueble)" class="p-button-rounded p-button-text"></button>
+                <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(inmueble, ri)" class="p-button-rounded p-button-text p-button-danger"></button>
+                <button *ngIf="inmueble.finalizado == 0 && !editing"pButton pRipple type="button" icon="pi pi-times" (click)="finalizarInmueble(inmueble.id, 1)" class="p-button-rounded p-button-danger p-button-text" style="margin-left: 10px;"></button>
+                <button *ngIf="inmueble.finalizado == 1 && !editing" (click)="finalizarInmueble(inmueble.id, 0)" class="btn btn-success" style="margin-left: 10px;">Activar</button>
+                <button *ngIf="!editing" pButton pRipple type="button" (click)="showDialog()" icon="pi pi-user"  class="p-button-rounded p-button-info p-button-text"></button>
+                <button *ngIf="!editing" pButton pRipple type="button" (click)="contratoArras(inmueble.id)" icon="pi pi-apple" class="p-button-rounded p-button-text" alt="Contrato de arras" title="Contrato de arras" style="margin-left: 10px;"></button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<!-- {{inmuebles1 | json}} -->
+
+
+
+
+
+
+
+
+<!-- <table class="table table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Dirección</th>
+            <th>Provincia</th>
+            <th>Municipio</th>
+            <th>Precio</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let inmueble of inmuebles">
+            <th>{{inmueble.direccion}}</th>
+            <th>{{inmueble.provincia}}</th>
+            <th> {{inmueble.municipio}}</th>
+            <th> {{inmueble.precio}}</th>
+            <th>
+                <div *ngIf="inmueble.cru; else loggedOut">
+                    cru.
+                  </div>
+                  <ng-template #loggedOut>
+                    no cru                 
+                    </ng-template>
+            </th>
+            <th>
+                <button (click)="actualizarInmueble(inmueble.id)" class="btn btn-info">Editar</button>
+                <button (click)="detallesInmueble(inmueble.id)" class="btn btn-primary" style="margin-left: 10px;">Detalles</button>
+                <button *ngIf="inmueble.finalizado == 0" (click)="finalizarInmueble(inmueble.id, 1)" class="btn btn-danger" style="margin-left: 10px;">Finalizar</button>
+                <button *ngIf="inmueble.finalizado == 1" (click)="finalizarInmueble(inmueble.id, 0)" class="btn btn-success" style="margin-left: 10px;">Activar</button>
+                
+                
+            </th>
+            </tr>
+    </tbody>
+</table> -->
+<!-- {{inmuebles|json}} -->
+
+
+
+<!-- <p-toast></p-toast> -->
+
+<!-- <button class="btn btn-primary" (click)="newInmu()">Nuevo inmueble</button> -->
+
+<!-- <p-table [value]="inmuebles" [tableStyle]="{'min-width': '50rem'}">
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Dirección</th>
+            <th>Provincia
+                <p-columnFilter type="text" field="provincia" display="menu"></p-columnFilter>
+            </th>
+            <th>Municipio</th>
+            
+            <th>Precio</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-inmuebles>
+        <tr>
+            <td>
+                {{inmuebles.direccion}}
+            </td>
+            <td>
+                {{inmuebles.provincia}}
+                
+            </td>
+            <td>
+                {{inmuebles.municipio}}
+                
+            </td>
+            <td>
+                {{inmuebles.precio}}
+            </td>
+            <td>
+                <div *ngIf="inmuebles.cru; else loggedOut">
+                    cru.
+                  </div>
+                  <ng-template #loggedOut>
+                    no cru                 
+                    </ng-template>
+
+            </td>
+            <td>
+                <a href="details/{{inmuebles.key}}">+ info</a>
+            </td>
+        </tr>
+    </ng-template>
+</p-table> -->
+
+
+
+
+
