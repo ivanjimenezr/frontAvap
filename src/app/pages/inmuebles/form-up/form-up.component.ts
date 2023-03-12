@@ -49,6 +49,17 @@ export class FormUpComponent implements OnInit {
     finalizado: ['', Validators.required],
     llaves: ['', Validators.required],
     fechaAlta: ['', Validators.required],
+    comisionVen: ['', Validators.required],
+    observaciones: ['', Validators.required],
+    comercial: ['', Validators.required],
+    dormitorios: ['', Validators.required],
+    banos: ['', Validators.required],
+    exterior: ['', Validators.required],
+    comisionCom: ['', Validators.required],
+    operacion: ['', Validators.required],
+    cee: ['', Validators.required],
+    descripcion: ['', Validators.required],
+    ascensor: ['', Validators.required],
     // vendedores: ['', Validators.required],
 
   })
@@ -76,9 +87,18 @@ export class FormUpComponent implements OnInit {
   }
 ]
 
+public inmuebleToEdit:any=[]
 
 
+clonedInmuebles: { [s: string]: any; } = {};
 
+selectedVendedores: string[] = [];
+idAsocia:any = {}
+jsonAsocia:any = {}
+objAsocia:any = {}
+
+public inmuebles1: any[];
+public inmuebles2: any[];
 
 constructor(private servicesService:ServicesService,public formBuilder:FormBuilder,public router: Router, private activatedRoute: ActivatedRoute) { }
 
@@ -89,8 +109,11 @@ ngOnInit(): void {
   console.log('idInmueble', this.pisosId)
 
   this.servicesService.getInmuebleId(this.pisosId).subscribe(data =>{
-    this.datosUpdate = data
+    console.log('jjjj',data)
+    
     console.log('datosUpdate',this.datosUpdate)
+    this.inmuebleToEdit.push(data)
+
     this.formUpInmueble.patchValue({
       'tipologia': this.datosUpdate.tipologia,
       'provincia': this.datosUpdate.provincia,
@@ -105,6 +128,17 @@ ngOnInit(): void {
       'finalizado': this.datosUpdate.finalizado,
       'llaves': this.datosUpdate.llaves,
       'fechaAlta': this.datosUpdate.fechaAlta,
+      'comisionVen': this.datosUpdate.comisionVen,
+      'observaciones': this.datosUpdate.observaciones,
+      'comercial': this.datosUpdate.comercial,
+      'dormitorios': this.datosUpdate.dormitorios,
+      'banos': this.datosUpdate.banos,
+      'exterior': this.datosUpdate.exterior,
+      'comisionCom': this.datosUpdate.comisionCom,
+      'operacion': this.datosUpdate.operacion,
+      'cee': this.datosUpdate.cee,
+      'descripcion': this.datosUpdate.descripcion,
+      'ascensor': this.datosUpdate.ascensor,
       // 'vendedores': this.datosUpdate.vendedores,
     })
   }) 
@@ -127,7 +161,54 @@ ngOnInit(): void {
   //   })
   }
 
+  onRowEditInit(inmueble: any) {
+    this.clonedInmuebles[inmueble.id] = {...inmueble};
+}
+
+public onRowEditSave(inmueble: any) {
+  delete this.clonedInmuebles[inmueble.id];
+  console.log('inmueble salvado', inmueble)
+  this.servicesService.updateInmueble(inmueble.id,inmueble).subscribe(dato=>{
+    console.log('datoToUp',dato);
+    console.log('selectedVendedores',this.selectedVendedores)
+
+    for (const point of this.selectedVendedores) {
+      
+      console.log(point)
+      this.idAsocia = point
+      this.jsonAsocia['id']=this.idAsocia['id']
+
+      this.objAsocia['idInmueble'] = inmueble.id
+      this.objAsocia['idVendedor'] = [this.jsonAsocia]
+
+
+      if (this.jsonAsocia){
+      
+        this.servicesService.asociarVendedor(inmueble.id,this.objAsocia).subscribe(dato=>{
+          console.log('dato',dato);
+        },error => console.log(error)
+        )
+      }
+    
+      // let ll = JSON.stringify(point)
+      // Object.keys(ll).find(key => ll[key] === 'id');
+
+      
+      // console.log(point.id); // third consoleLog
+}
+console.log('zzzz',this.jsonAsocia)
+this.objAsocia['idInmueble']=inmueble.id
+this.objAsocia['idVendedor']=this.jsonAsocia
+
+  },error => console.log(error)
+  )
   
+}
+
+public onRowEditCancel(inmueble: any, index: number) {
+  this.inmuebles2[index] = this.clonedInmuebles[inmueble.id];
+  delete this.inmuebles2[inmueble.id];
+}
   
   
   public submit(){

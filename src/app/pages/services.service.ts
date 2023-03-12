@@ -15,8 +15,8 @@ import { Router } from '@angular/router';
 export class ServicesService {
 
   // endpoint: string = 'https://auv7fn.deta.dev';
-  // endpoint: string = 'http://127.0.0.1:8000';
-  endpoint: string = 'http://217.160.32.229:8000';
+  endpoint: string = 'http://127.0.0.1:8000';
+  // endpoint: string = 'http://217.160.32.229:8000';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
 
 
@@ -30,6 +30,7 @@ export class ServicesService {
   // Get Inmueble by Id
   public getInmuebleId( id : any ) { 
     const url: string = this.endpoint + '/inmuebles/' + id;
+    console.log('ooo', url)
     return this.http.get( url );
   }
 

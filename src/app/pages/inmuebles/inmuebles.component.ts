@@ -62,14 +62,14 @@ export class InmueblesComponent implements OnInit {
     })
 
     }
-    // public getVendedorInmueble(id:any){
-    //   console.log('id', id)
-    //   this.servicesService.getVendedorInmueble(id).subscribe(dato=>{
-    //     console.log('getVendedorInmueble: ',dato)
-    //     this.vendedor = dato
-    //   })
-    //   // this.router.navigate(['api/inmuebles']);
-    // }
+    public getVendedorInmueble(id:any){
+      console.log('id', id)
+      this.servicesService.getVendedorInmueble(id).subscribe(dato=>{
+        console.log('getVendedorInmueble: ',dato)
+        this.vendedor = dato
+      })
+      // this.router.navigate(['api/inmuebles']);
+    }
 
   onRowEditInit(inmueble: any) {
     this.clonedInmuebles[inmueble.id] = {...inmueble};
@@ -131,35 +131,9 @@ console.log('zzzz',this.jsonAsocia)
 this.objAsocia['idInmueble']=inmueble.id
 this.objAsocia['idVendedor']=this.jsonAsocia
 
-    
-    // for (const [k, v] of Object.entries(this.selectedVendedores)) {
-    //   k  // Type is string
-    //   v  // Type is any
-    //   console.log()
-    // }
-  
-    // this.jsonAsocia['idInmueble'] = inmueble.id;
-    // this.jsonAsocia['idVendedor'] = inmueble.id;
-
-    // Creamos la asociacion, si la hay
-    // if (this.jsonAsocia){
-      
-    //   this.servicesService.asociarVendedor(inmueble.id,this.objAsocia).subscribe(dato=>{
-    //     console.log('dato',dato);
-    //   },error => console.log(error)
-    //   )
-    // }
   },error => console.log(error)
   )
   
-  
-  // if (inmueble.price > 0) {
-  //     delete this.clonedInmuebles[inmueble.id];
-  //     this.messageService.add({severity:'success', summary: 'Success', detail:'Product is updated'});
-  // }  
-  // else {
-  //     this.messageService.add({severity:'error', summary: 'Error', detail:'Invalid Price'});
-  // }
 }
 
 public onRowEditCancel(inmueble: any, index: number) {
@@ -203,16 +177,18 @@ private recoverPisosAct() {
     
     return this.servicesService.getInmueble().subscribe((data)=> {
       console.log('data', data)
+      
+      // this.inmuebles1 = data
+      console.log('tipo', typeof(this.inmuebles1))
+
       this.inmuebles1 = data.filter((item) => {
         return item.finalizado === 0;
       });
       this.inmuebles2 = data.filter((item) => {
         return item.finalizado === 0;
       });
-      // return data
       
 
-      // this.inmuebles = data;
       console.log('inmuebles1',this.inmuebles1)
       this.funcion = this.inmuebles1
     })
