@@ -190,7 +190,7 @@
                 <div class="col">
                   <div class="form-outline">
                     <select id='comercial' name='comercial' formControlName="comercial" class="custom-select mr-sm-2">
-                        <option *ngFor="let item of comerciales" [value]="comerciales">
+                        <option *ngFor="let item of comerciales" [value]="item.nombre">
                           {{item.nombre}}
                         </option>    
                     </select>

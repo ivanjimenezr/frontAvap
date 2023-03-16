@@ -87,32 +87,43 @@ export class FormUpComponent implements OnInit {
   }
 ]
 
-public inmuebleToEdit:any=[]
+public editForm :boolean = false
+
+// public inmuebleToEdit:any=[]
 
 
-clonedInmuebles: { [s: string]: any; } = {};
+public clonedInmuebles: { [s: string]: any; } = {};
 
-selectedVendedores: string[] = [];
-idAsocia:any = {}
-jsonAsocia:any = {}
-objAsocia:any = {}
+public selectedVendedores: string[] = [];
+
+public selectedComerciales: string[] = [];
+public comerciales:any[];
+
+
+public idAsocia:any = {}
+public jsonAsocia:any = {}
+public objAsocia:any = {}
 
 public inmuebles1: any[];
 public inmuebles2: any[];
+
+public vendedor:any
 
 constructor(private servicesService:ServicesService,public formBuilder:FormBuilder,public router: Router, private activatedRoute: ActivatedRoute) { }
 
 ngOnInit(): void {
 
+  this.recoverComerciales()
 
   this.pisosId = this.activatedRoute.snapshot.paramMap.get('id');
   console.log('idInmueble', this.pisosId)
 
   this.servicesService.getInmuebleId(this.pisosId).subscribe(data =>{
     console.log('jjjj',data)
-    
+    this.datosUpdate = data
     console.log('datosUpdate',this.datosUpdate)
-    this.inmuebleToEdit.push(data)
+    // this.inmuebleToEdit.push(data)
+    // console.log('inmuebleToEdit',this.inmuebleToEdit)
 
     this.formUpInmueble.patchValue({
       'tipologia': this.datosUpdate.tipologia,
@@ -160,8 +171,14 @@ ngOnInit(): void {
   //     console.log('kkkk',this.pisosId)
   //   })
   }
+public showEdit() {
+    return (this.editForm = true);
+  }
+  public editCancel() {
+    return (this.editForm = false);
+  }
 
-  onRowEditInit(inmueble: any) {
+  public onRowEditInit(inmueble: any) {
     this.clonedInmuebles[inmueble.id] = {...inmueble};
 }
 
@@ -215,6 +232,7 @@ public onRowEditCancel(inmueble: any, index: number) {
     console.log('this.formUpInmueble.value',this.formUpInmueble.value)
     // console.log(this.formNewInmueble.value)
     this.updateInmueble()
+    this.editForm = false
   }
   
   public updateInmueble(){
@@ -222,12 +240,31 @@ public onRowEditCancel(inmueble: any, index: number) {
     console.log('jsonFormUp: ',jsonFormUp)
     this.servicesService.updateInmueble(this.pisosId,jsonFormUp).subscribe(dato=>{
       console.log('datoToUp',dato);
-      this.router.navigate(['api/inmuebles'])
+      window.location.reload();
+      // this.router.navigate(['api/inmuebles/update/'+this.pisosId])
     },error => console.log(error)
     )
   }
 
-  
+  private recoverComerciales() {
+    return this.servicesService.getComerciales().subscribe((data)=> {
+      this.comerciales = data
+      // this.inmuebles = data;
+      console.log('comerciales',this.comerciales)
+      // this.funcion = this.vendedores
+    })
+
+  }
+
+  public getVendedorInmueble(id:any){
+    console.log('id', id)
+    this.servicesService.getVendedorInmueble(id).subscribe(dato=>{
+      console.log('getVendedorInmueble: ',dato)
+      this.vendedor = dato
+    })
+    // this.router.navigate(['api/inmuebles']);
+  }
+
   public onCancelar(){
     this.router.navigate(['api/inmuebles']);
   }

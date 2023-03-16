@@ -92,14 +92,14 @@
             <td style="text-align:center">
                 cee: {{inmueble.cee}}
 
-                <button (click)="actualizarInmueble(inmueble.id)" class="btn btn-info">Editar</button>
+                <button (click)="actualizarInmueble(inmueble.id)" class="btn btn-info">Detalles</button>
                 <!-- <button (click)="detallesInmueble(inmueble.id)" class="btn btn-primary" style="margin-left: 10px;">Detalles</button>
                 <button *ngIf="inmueble.finalizado == 0" (click)="finalizarInmueble(inmueble.id, 1)" class="btn btn-danger" style="margin-left: 10px;">Finalizar</button>
                 <button *ngIf="inmueble.finalizado == 1" (click)="finalizarInmueble(inmueble.id, 0)" class="btn btn-success" style="margin-left: 10px;">Activar</button> -->
-                <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(inmueble)" class="p-button-rounded p-button-text"></button>
-                <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(inmueble)" class="p-button-rounded p-button-text"></button>
-                <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(inmueble, ri)" class="p-button-rounded p-button-text p-button-danger"></button>
-                <button *ngIf="inmueble.finalizado == 0 && !editing"pButton pRipple type="button" icon="pi pi-times" (click)="finalizarInmueble(inmueble.id, 1)" class="p-button-rounded p-button-danger p-button-text" style="margin-left: 10px;"></button>
+                <!-- <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(inmueble)" class="p-button-rounded p-button-text"></button> -->
+                <!-- <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(inmueble)" class="p-button-rounded p-button-text"></button> -->
+                <!-- <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(inmueble, ri)" class="p-button-rounded p-button-text p-button-danger"></button> -->
+                <button *ngIf="inmueble.finalizado == 0 && !editing"pButton pRipple  type="button" icon="pi pi-times" (click)="finalizarInmueble(inmueble.id, 1)" class="p-button-rounded p-button-danger p-button-text" style="margin-left: 10px;"></button>
                 <button *ngIf="inmueble.finalizado == 1 && !editing" (click)="finalizarInmueble(inmueble.id, 0)" class="btn btn-success" style="margin-left: 10px;">Activar</button>
                 <button *ngIf="!editing" pButton pRipple type="button" (click)="showDialog()" icon="pi pi-user"  class="p-button-rounded p-button-info p-button-text"></button>
                 <button *ngIf="!editing" pButton pRipple type="button" (click)="contratoArras(inmueble.id)" icon="pi pi-apple" class="p-button-rounded p-button-text" alt="Contrato de arras" title="Contrato de arras" style="margin-left: 10px;"></button>
