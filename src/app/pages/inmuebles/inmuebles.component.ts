@@ -37,6 +37,10 @@ export class InmueblesComponent implements OnInit {
   jsonAsocia:any = {}
   objAsocia:any = {}
   public display: boolean = false;
+  public displayFile1: boolean = false;
+
+  public urlArras = ''
+  public titleUrlArras = ''
   
   constructor(public servicesService:ServicesService,public router: Router,private messageService: MessageService) { }
 
@@ -224,14 +228,24 @@ public handleChange(e:any) {
 public showDialog() {
   this.display = true;
 }
+public showDialogFile1() {
+  this.displayFile1 = true;
+}
 
 public contratoArras(id:any){
   this.servicesService.contratoArras(id, this.fileName).subscribe(dato=>{
-    if (dato) {
-      const url = window.URL.createObjectURL(this.returnBlob(dato));
-      console.log('filetype', typeof(url))
-      window.open(url)
-    }
+    console.log('Archivo: ',dato)
+    // if (dato) {
+    //   const url = window.URL.createObjectURL(this.returnBlob(dato));
+    //   console.log('filetype', typeof(url))
+      
+    //   // window.open(url)
+    // }
+    let body = dato.body
+    body = JSON.parse(body)
+    this.urlArras = body.results
+    this.titleUrlArras = 'Contrato de arras'
+    this.showDialogFile1()
     console.log(dato)
   })
 }
@@ -243,3 +257,4 @@ return new Blob([dato], {type : 'docx'})
 public fileName = 'arras.docx';
 
 }
+

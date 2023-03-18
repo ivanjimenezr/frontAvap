@@ -20,12 +20,18 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
+  // { path: '', redirectTo: 'api/inmuebles', pathMatch: 'full' },
   {path: 'login', component:LoginComponent},
   {path: 'api/inmuebles', component: InmueblesComponent,canActivate:[AuthGuardService]},
+  // {path: 'api/inmuebles', component: InmueblesComponent},
   
-  {path: 'api/inmuebles/details/:id', component:DetailsComponent,canActivate:[AuthGuardService]},
-  {path: 'api/inmuebles/update/:id', component:FormUpComponent,canActivate:[AuthGuardService]},
-  {path: 'api/inmuebles/newInmu', component:FormNewComponent,canActivate:[AuthGuardService]},
+  // {path: 'api/inmuebles/details/:id', component:DetailsComponent,canActivate:[AuthGuardService]},
+  // {path: 'api/inmuebles/update/:id', component:FormUpComponent,canActivate:[AuthGuardService]},
+  // {path: 'api/inmuebles/newInmu', component:FormNewComponent,canActivate:[AuthGuardService]},
+
+  {path: 'api/inmuebles/details/:id', component:DetailsComponent},
+  {path: 'api/inmuebles/update/:id', component:FormUpComponent},
+  {path: 'api/inmuebles/newInmu', component:FormNewComponent},
   
   {path: 'api/vendedores', component:VendedoresComponent,canActivate:[AuthGuardService]},
   {path: 'api/vendedores/details/:id', component:DetailsVendedoresComponent,canActivate:[AuthGuardService]},
@@ -41,6 +47,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
+  // imports: [RouterModule.forRoot(routes, { useHash: true })],
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })

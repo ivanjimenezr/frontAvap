@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -97,7 +98,7 @@ import { LoginSuccessfulComponent } from './pages/login-successful/login-success
   ],
   exports: [ TableModule ],
   // providers: [ServicesService],
-  providers: [{
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy},{
     provide: HTTP_INTERCEPTORS,
     useClass: InterceptorServiceService,
     multi: true

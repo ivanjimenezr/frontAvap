@@ -1,4 +1,11 @@
-
+<p-dialog header="{{titleUrlArras}}" [(visible)]="displayFile1">
+     <p [innerHTML]="urlArras"></p>
+     <!-- {{urlArras}} -->
+     
+     <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="displayFile1=false" label="Ok" styleClass="p-button-text"></p-button>
+    </ng-template>
+</p-dialog>
 
 
 <h2>Lista de inmuebles</h2>
