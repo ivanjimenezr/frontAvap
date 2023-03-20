@@ -9,7 +9,8 @@ import { map } from 'rxjs/operators';
 export class ApiService {
 
   // private REST_API_SERVER = "http://127.0.0.1:8000/";
-  private REST_API_SERVER = "http://217.160.32.229:8004/";
+  // private REST_API_SERVER = "http://217.160.32.229:8004/";
+  private REST_API_SERVER = "http://api.avapagencia.com";
 
   constructor(private httpClient: HttpClient) { }
 

@@ -15,8 +15,8 @@ import { Router } from '@angular/router';
 export class ServicesService {
 
   // endpoint: string = 'https://auv7fn.deta.dev';
-  endpoint: string = 'http://127.0.0.1:8000';
-  // endpoint: string = 'http://api.avapagencia.com';
+  // endpoint: string = 'http://127.0.0.1:8000';
+  endpoint: string = 'http://api.avapagencia.com';
   // endpoint: string = 'http://217.160.32.229:8000';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
 
